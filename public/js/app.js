@@ -1,6 +1,8 @@
 var app = angular.module("quilt_creator_app", []);
 
-app.controller("mainController", ["$http", function($http) {
+app.controller("mainController", ["$http", "$scope", function($http, $scope) {
+
+  this.message = "the app.js file is attached!";
   //set variables for usage in functions
   this.url = "http://localhost:3000"; //or heroku backend
 
