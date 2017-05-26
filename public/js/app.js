@@ -1,8 +1,29 @@
 var app = angular.module("quilt_creator_app", []);
 
+// app.config(function($routeProvider) {
+//   $routeProvider
+//
+//   .when("/", {
+//     templateUrl : "index.html",
+//     controller : "mainController"
+//   })
+//
+//   .when("/users/login", {
+//     templateUrl : "views/login.html",
+//     controller : "mainController"
+//   })
+//
+//    .when("/users", {
+//      templateUrl : "views/createAccount.html",
+//      controller: "mainController"
+//    })
+// });
+
 app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.message = "the app.js file is attached!";
+
+
   //set variables for usage in functions
   this.url = "http://localhost:3000"; //or heroku backend
 

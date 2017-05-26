@@ -1,0 +1,19 @@
+<!-- =======CREATE ACCOUNT====== -->
+<section id="signup-modal" class="modal">
+  <section class="modal-input-box">
+    <!--Button to close modal-->
+    <!-- <div>
+      <a class="close">X</a>
+    </div> -->
+    <!-- Button to close the modal END-->
+    <form ng-submit="ctrl.createAccount(user)">
+      <div class="legend-container">
+        <legend align="center"><h2>Create Account</h2></legend>
+      </div>
+      <input class="username" type="text" ng-model="user.username" placeholder="username"/><br/>
+      <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/><br/>
+      <input class="create-account-btn" type="submit" value="Sign Up"/>
+    </form>
+  </section>
+</section>
+<!-- =====END CREATE ACCOUNT==== -->

@@ -5,7 +5,7 @@
     <title>Quilt Creator Home</title>
     <!-- javascript -->
       <!-- jquery -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script> -->
       <!-- angular -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
       <!-- js files -->
@@ -15,15 +15,60 @@
   </head>
   <body ng-controller="mainController as ctrl">
 
-    <div ng-include="views/createAccount.html">
+    {{ctrl.message}}
+
+<!-- =====AN ATTEMPT AT PARTIALS THAT FAILED==== -->
+    <!-- <div ng-include="views/createAccount.html">
     </div>
 
     <div ng-include="views/login.html">
-    </div>
+    </div> -->
+
+    <!-- =======CREATE ACCOUNT====== -->
+    <section id="signup-modal" class="modal">
+      <section class="modal-input-box">
+        <!--Button to close modal-->
+        <!-- <div>
+          <a class="close">X</a>
+        </div> -->
+        <!-- Button to close the modal END-->
+        <form ng-submit="ctrl.createAccount(user)">
+          <div class="legend-container">
+            <legend align="center"><h2>Create Account</h2></legend>
+          </div>
+          <input class="username" type="text" ng-model="user.username" placeholder="username"/><br/>
+          <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/><br/>
+          <input class="create-account-btn" type="submit" value="Sign Up"/>
+        </form>
+      </section>
+    </section>
+    <!-- =====END CREATE ACCOUNT==== -->
 
 
-
-
+    <!--LOGIN MODAL-->
+    <section id="login-modal" class="modal">
+      <section class="modal-input-box">
+        <!--Button to close modal-->
+        <!-- <div>
+          <a class="close">X</a>
+        </div> -->
+        <!-- Button to close the modal END-->
+        <form ng-submit="ctrl.login(user)">
+          <div class="legend-container">
+            <legend><h2>Login</h2></legend>
+          </div>
+          <label for="username">Username:</label>
+          <input class="username" type="text" ng-model="user.username" placeholder="username"/><br/>
+          <label for="password">Password:</label>
+          <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/><br/>
+          <input class="login-btn" ng-click="user.login()" type="submit"/>
+        </form>
+        <p>Welcome: {{ ctrl.user.username }} </p>
+        <div>{{ctrl.error}}</div>
+        <!-- removed ng repeat for user -->
+      </section>
+    </section>
+    <!--END LOGIN MODAL-->
 
 
   </body>
