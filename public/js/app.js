@@ -1,24 +1,5 @@
 var app = angular.module("quilt_creator_app", []);
 
-// app.config(function($routeProvider) {
-//   $routeProvider
-//
-//   .when("/", {
-//     templateUrl : "index.html",
-//     controller : "mainController"
-//   })
-//
-//   .when("/users/login", {
-//     templateUrl : "views/login.html",
-//     controller : "mainController"
-//   })
-//
-//    .when("/users", {
-//      templateUrl : "views/createAccount.html",
-//      controller: "mainController"
-//    })
-// });
-
 app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.message = "the app.js file is attached!";
@@ -38,7 +19,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //toggle to change views
   //this.token = false;
 
-//===============CREATE USER===============//
+  //===============CREATE USER===============//
 
   this.createAccount = function(user) {
     console.log(user);
@@ -59,7 +40,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }.bind(this));
   };
 
-//===============LOGIN USER===============//
+  //===============LOGIN USER===============//
 
   this.login = function(user) {
     console.log(user);
@@ -86,7 +67,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }.bind(this));
   };
 
-//===============USER LOGOUT===============//
+  //===============USER LOGOUT===============//
 
   this.logout = function() {
     //this.token = false;
@@ -94,25 +75,61 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     location.reload();
   };
 
-//===============USER EDIT===============//
+  //===============USER EDIT===============//
 
-//===============USER SHOW===============//
+  this.getUser = function(id) {
+    $http({
+      method: "PUT",
+      url: this.url + "/user/" + id,
+      //data is the form data for user which includes password, years quilting, favorite block and an image maybe?
+      headers: {
+        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response) {
+      console.log(response);
+      if (response.data.status == 401) {
+        this.error = "Unauthorized";
+      } else {
+        this.user = response.data;
+      }
+    }.bind(this));
+  };
 
-//===============USER GETID===============//
 
-//===============USER DELETE===============//
+  //===============USER SHOW===============//
+
+  this.getUser = function(id) {
+    $http({
+      method: "GET",
+      url: this.url + "/user/" + id,
+      headers: {
+        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(function(response) {
+      console.log(response);
+      if (response.data.status == 401) {
+        this.error = "Unauthorized";
+      } else {
+        this.user = response.data;
+      }
+    }.bind(this));
+  };
+
+  //===============USER GETID===============//
+
+  //===============USER DELETE===============//
 
 
 
-//===============QUILT CREATE=============//
+  //===============QUILT CREATE=============//
 
-//===============QUILT INDEX===============//
+  //===============QUILT INDEX===============//
 
-//===============QUILT SHOW===============//
+  //===============QUILT SHOW===============//
 
-//===============QUILT DELETE=============//
+  //===============QUILT DELETE=============//
 
-//===============QUILT MATH===============//
+  //===============QUILT MATH===============//
 
 
 }]);
