@@ -1,8 +1,5 @@
-/*body {
-  background-color: purple;
-}*/
 
-/*grab the pieces in the pieces holder*/
+/*==============QUILT PIECE OPTIONS==============*/
 .piece {
   width: 50px;
   height: 50px;
@@ -12,35 +9,65 @@
   color: red;
   background-color: red;
 }
+
 .orange {
   color: orange;
   background-color: orange;
 }
+
 .yellow {
   color: yellow;
   background-color: yellow;
 }
+
 .green {
   color: green;
   background-color: green;
 }
+
 .blue{
   color: blue;
   background-color: blue;
 }
+
 .purple {
   color: purple;
   background-color: purple;
 }
+
 .black {
   color: black;
   background-color: black;
 }
+
 .white {
   color: white;
   background-color: white;
 }
+
 .grey {
   color: grey;
   background-color: grey;
+}
+/*===========END QUILT PIECE OPTIONS==========*/
+
+/*=================QUILT GRID=================*/
+#quilt-grid {
+  display: flex;
+  flex-flow: row wrap;
+  width: 220px;
+  height: 220px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.grid {
+  border: 1px solid grey;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
 }
