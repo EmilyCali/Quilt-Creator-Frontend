@@ -84,7 +84,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       //data is the form data for user which includes password, years quilting, favorite block and an image maybe?
       data :{
         user: {
-          password: user.password,
+          //might need to include username and password but should be able to avoid these somehow
           favorite_block: user.favorite_block,
           years_quilting: user.years_quilting
         }
