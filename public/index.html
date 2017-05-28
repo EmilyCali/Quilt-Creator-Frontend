@@ -95,13 +95,10 @@
           <a class="close">X</a>
         </div> -->
         <!-- Button to close the modal END-->
-        <form ng-submit="ctrl.editAccount(user)">
+        <form ng-submit="ctrl.editUser(ctrl.user, ctrl.user.id)">
           <div class="legend-container">
-            <legend align="center"><h2>Edit Account</h2></legend>
+            <legend align="center"><h2>Edit Your Account {{user.username}}</h2></legend>
           </div>
-          <label for="password">Password:</label>
-          <input type="password" ng-model="user.password" placeholder="password" required min-length="8"/>
-          <br/>
           <label for="favorite_block">Favorite Block:</label>
           <input type="text" ng-model="user.favorite_block" placeholder="{{user.favorite_block}}" value="{{user.favorite_block}}"/>
           <br/>

@@ -77,11 +77,18 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //===============USER EDIT===============//
 
-  this.getUser = function(id) {
+  this.editUser = function(user, id) {
     $http({
       method: "PUT",
       url: this.url + "/user/" + id,
       //data is the form data for user which includes password, years quilting, favorite block and an image maybe?
+      data :{
+        user: {
+          password: user.password,
+          favorite_block: user.favorite_block,
+          years_quilting: user.years_quilting
+        }
+      },
       headers: {
         Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
       }
