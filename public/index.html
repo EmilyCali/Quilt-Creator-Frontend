@@ -37,7 +37,6 @@
     <!--=================END HEADER============-->
 
 
-
     <!--===========CREATE ACCOUNT=============-->
     <section id="signup-modal" class="modal">
       <section class="modal-input-box">
@@ -50,8 +49,10 @@
           <div class="legend-container">
             <legend align="center"><h2>Create Account</h2></legend>
           </div>
-          <input class="username" type="text" ng-model="user.username" placeholder="username"/><br/>
-          <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/><br/>
+          <input class="username" type="text" ng-model="user.username" placeholder="username"/>
+          <br/>
+          <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/>
+          <br/>
           <input class="create-account-btn" type="submit" value="Sign Up"/>
         </form>
       </section>
@@ -72,10 +73,12 @@
             <legend><h2>Login</h2></legend>
           </div>
           <label for="username">Username:</label>
-          <input class="username" type="text" ng-model="user.username" placeholder="username"/><br/>
+          <input type="text" ng-model="user.username" placeholder="username"/>
+          <br/>
           <label for="password">Password:</label>
-          <input class="password" type="password" ng-model="user.password" placeholder="password" required min-length="8"/><br/>
-          <input class="login-btn" ng-click="user.login()" type="submit"/>
+          <input type="password" ng-model="user.password" placeholder="password" required min-length="8"/>
+          <br/>
+          <input class="btn" type="submit" value="Login"/>
         </form>
         <p>Welcome: {{ ctrl.user.username }} </p>
         <div>{{ctrl.error}}</div>
@@ -83,6 +86,36 @@
       </section>
     </section>
     <!--=============END LOGIN MODAL============-->
+
+    <!--=============EDIT ACCOUNT===============-->
+    <section id="edit-modal" class="modal">
+      <section class="modal-input-box">
+        <!--Button to close modal-->
+        <!-- <div>
+          <a class="close">X</a>
+        </div> -->
+        <!-- Button to close the modal END-->
+        <form ng-submit="ctrl.editAccount(user)">
+          <div class="legend-container">
+            <legend align="center"><h2>Edit Account</h2></legend>
+          </div>
+          <label for="password">Password:</label>
+          <input type="password" ng-model="user.password" placeholder="password" required min-length="8"/>
+          <br/>
+          <label for="favorite_block">Favorite Block:</label>
+          <input type="text" ng-model="user.favorite_block" placeholder="{{user.favorite_block}}" value="{{user.favorite_block}}"/>
+          <br/>
+          <label for="years_quilting">Years Quilting:</label>
+          <input type="text" ng-model="user.years_quilting" placeholder="{{user.years_quilting}}" value="{{user.years_quilting}}"/>
+          <input type="submit" value="Save Changes"/>
+        </form>
+      </section>
+    </section>
+    <!--===========END EDIT ACCOUNT===========-->
+
+
+<!-- QUILTS QUILTS QUILTS QUILTS QUILTS QUILTS  -->
+
 
     <!--============INDEX QUILTS===============-->
     <div id="index">
@@ -147,7 +180,26 @@
         </div>
       </div>
     </div>
-    <!--=============END QUILT INDEX============-->
+    <!--=============END MAKE QUILT============-->
+
+    <!--============SHOW QUILTS===============-->
+    <div id="show-quilt">
+      <div class="quilts container">
+        <!-- ngshow to have this hide and show -->
+        <!-- ngrepeat for each piece in the block, order by position in the position ledger, variations on color with fi statements? -->
+        <div class="quilt">
+          <!-- edit tab for each as long as it is yours -->
+          <!-- quilt image -->
+          <img />
+          <!-- quilt title -->
+          <h4></h4>
+          <!-- quilt creator username -->
+          <h4></h4>
+        </div>
+      </div>
+    </div>
+    <!--=============END SHOW QUILT============-->
+
 
 
   </body>
