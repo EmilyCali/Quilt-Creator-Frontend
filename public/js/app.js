@@ -146,50 +146,72 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
 
 
-  //===============QUILT CREATE=============//
-
-    this.createBlock = function() {
+  //==========QUILT BLOCK CREATE==========//
+//NEED TO PASS IN USERID
+    this.createQuiltBlock = function() {
       $http({
         method: "POST",
-        url: this.url + "/blocks",
+        url: this.url + "/quilt_blocks",
         data: {
-          block: {
-            title: block.title,
-            difficulty: block.difficulty
+          quilt_block: {
+            title: quilt_block.title,
+            difficulty: quilt_block.difficulty,
+            //these will be a number, show multiple blocks to choose and give them numbers
+            img: quilt_block.img,
+            //may not need this, but could make it set automatically based on the image chosen
+            num_pieces: quilt_block.num_pieces,
+            piece_size: quilt_block.piece_size,
+            style: quilt_block.style
           }
         },
         headers: {
           Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
-
-      });
+          // if 401 error message please login
+          console.log(response + "created quilt block");
+          this.quilt_block = response.data.quilt_block;
+          this.getQuiltBlocks();
+      }.bind(this));
     };
 
-  //===============QUILT INDEX===============//
+  //===========QUILT BLOCK INDEX===========//
 
     this.getQuiltBlocks = function() {
       $http({
         method: "GET",
-        url: this.url + "/blocks",
+        url: this.url + "/quilt_blocks",
       }).then(function(response) {
         console.log(response);
-        this.blocks = response.data;
+        this.quilt_blocks = response.data;
       //console.log(this.recipes);
       }.bind(this));
     };
 
     this.getQuiltBlocks();
 
-  //===============QUILT SHOW===============//
+  //============QUILT BLOCK SHOW=============//
 
-    this.getQuiltBlock = function() {
-
+    this.getQuiltBlock = function(id) {
+      console.log(id);
+      $http({
+        method: "GET",
+        url: this.url + "/quilt_blocks" + id,
+      }).then(function(response) {
+        console.log(response);
+        this.quilt_block = response.data;
+      }.bind(this));
     };
 
-  //===============QUILT DELETE=============//
+  //=============QUILT BLOCK DELETE==========//
 
-  //===============QUILT MATH===============//
+  //============QUILT BLOCK MATH============//
 
+    this.quiltBlockCalc = function() {
+      //depending on the image compute the number of pieces, triangles and squares (add .75 or .5)
+      //depending on the size of the pices multiply these numbers
+      //put out required fabric ammount
+      //maybe also let people pick colors, number of colors determines a division of materials (only evenly at this point)
 
+    };
 }]);
