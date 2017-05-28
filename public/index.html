@@ -106,6 +106,7 @@
           <input type="text" ng-model="user.years_quilting" placeholder="{{user.years_quilting}}" value="{{user.years_quilting}}"/>
           <input type="submit" value="Save Changes"/>
         </form>
+        <button ng-click="ctrl.deleteUser(ctrl.user.id)">Delete Account</button>
       </section>
     </section>
     <!--===========END EDIT ACCOUNT===========-->

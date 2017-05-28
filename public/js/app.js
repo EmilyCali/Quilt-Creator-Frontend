@@ -23,10 +23,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.createAccount = function(user) {
     console.log(user);
-    //if ((this.username === "") || (this.username == "undefined") || (this.password === "") || (this.password === "undefined")) {
-      //this.error = "You must fill in all fields";
-      //return;
-    //}
     $http({
       method: "POST",
       url: this.url + "/users",
@@ -39,10 +35,11 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       },
     }).then(function(response) {
       console.log(response);
-      //if (response.status === 200) {
-        //this.user = response.data.user;
-      //}
-      this.user = response.data.user;
+      if (response.status == 401) {
+        this.error = "Please try again, the username may be taken or you have not filled these fields.";
+      } else {
+        this.user = response.data.user;
+      }
     }.bind(this));
   };
 
@@ -50,7 +47,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.login = function(user) {
     console.log(user);
-
     $http({
       method: "POST",
       url: this.url + "/users/login",
@@ -67,9 +63,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       } else {
         this.user = response.data.user;
         localStorage.setItem("token", JSON.stringify(response.data.token));
-        //localStorage.setItem("username", this.user.username);
-        //localStorage.setItem("password", this.user.password);
-        //localStorage.setItem("userId", this.user.id);
 
         //toggle for token validation to make certain parts of the page show and not show with ngs
         //this.token = true;
@@ -90,15 +83,11 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   this.editUser = function(user, id) {
     console.log(user);
     console.log(id);
-    //this.currentUserId = localStorage.getItem("userId");
     $http({
       method: "PUT",
-      url: this.url + "/users/" + id, //this.currentUserId,
-      //data is the form data for user which includes password, years quilting, favorite block and an image maybe?
+      url: this.url + "/users/" + id,
       data :{
         user: {
-          //might need to include username and password but should be able to avoid these somehow
-          //password: this.user.password,
           favorite_block: user.favorite_block,
           years_quilting: user.years_quilting
         }
@@ -145,7 +134,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       console.log("delete clicked");
       $http({
         method: "DELETE",
-        url: this.url + "/delete/" + id,
+        url: this.url + "/users/" + id,
         headers: {
           Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
         }
@@ -159,9 +148,44 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //===============QUILT CREATE=============//
 
+    this.createBlock = function() {
+      $http({
+        method: "POST",
+        url: this.url + "/blocks",
+        data: {
+          block: {
+            title: block.title,
+            difficulty: block.difficulty
+          }
+        },
+        headers: {
+          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+        }
+      }).then(function(response) {
+
+      });
+    };
+
   //===============QUILT INDEX===============//
 
+    this.getQuiltBlocks = function() {
+      $http({
+        method: "GET",
+        url: this.url + "/blocks",
+      }).then(function(response) {
+        console.log(response);
+        this.blocks = response.data;
+      //console.log(this.recipes);
+      }.bind(this));
+    };
+
+    this.getQuiltBlocks();
+
   //===============QUILT SHOW===============//
+
+    this.getQuiltBlock = function() {
+
+    };
 
   //===============QUILT DELETE=============//
 
