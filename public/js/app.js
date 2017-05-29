@@ -14,7 +14,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //this.updatedData = {};
 
-  this.quilt = {};
+  this.quilt_block = {};
 
   //toggle to change views
   //this.token = false;
@@ -146,7 +146,10 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //==========QUILT BLOCK CREATE==========//
 //NEED TO PASS IN USERID
-    this.createQuiltBlock = function() {
+    this.createQuiltBlock = function(quilt_block, id) {
+      //this.user_id = id;
+      console.log(quilt_block);
+      console.log(id);
       $http({
         method: "POST",
         url: this.url + "/quilt_blocks",
@@ -159,17 +162,23 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
             //may not need this, but could make it set automatically based on the image chosen
             num_pieces: quilt_block.num_pieces,
             piece_size: quilt_block.piece_size,
-            style: quilt_block.style
+            style: quilt_block.style,
+            triangles: quilt_block.triangles,
+            squares: quilt_block.squares
           }
         },
         headers: {
           Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
+        console.log(response + "created quilt block");
           // if 401 error message please login
-          console.log(response + "created quilt block");
-          this.quilt_block = response.data.quilt_block;
-          this.getQuiltBlocks();
+          if (response.data.status == 401) {
+            this.error = "Please Login to create a quilt";
+          } else {
+            this.quilt_block = response.data.quilt_block;
+            this.getQuiltBlocks();
+          }
       }.bind(this));
     };
 

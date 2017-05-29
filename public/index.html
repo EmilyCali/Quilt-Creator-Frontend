@@ -116,27 +116,59 @@
 
 
     <!--============INDEX QUILTS===============-->
-    <div id="index">
+    <div id="index-quilts">
       <div class="quilts container">
-        <!-- ngshow to have this hide and show -->
-        <!-- ngrepeat for each quilt -->
-        <div class="quilt">
-          <!-- edit tab for each as long as it is yours -->
-          <!-- quilt image using if statements  -->
-          <img />
-          <!-- quilt title -->
-          <h4></h4>
-          <!-- quilt creator username -->
-          <h4></h4>
+        <div ng-repeat="quilt_block in ctrl.quilt_blocks">
+          <!-- title -->
+          <!-- creator (user_id) -->
+          <!-- difficulty -->
+          <!-- img -->
         </div>
       </div>
     </div>
     <!--=============END QUILT INDEX============-->
 
     <!--============MAKE QUILTS===============-->
-    <div id="make-quilt">
+    <div id="create-quilt-block">
       <div class="quilts container">
 
+        <!-- two triangles count as 1 here, because two make up one block -->
+        <form ng-submit="ctrl.createQuiltBlock(quilt_block, ctrl.user.id)">
+          <!-- title -->
+          <label> Title your Quilt Block </label>
+          <input type="text" ng-model="ctrl.quilt_block.title" placeholder="title" />
+          <br/>
+          <!-- difficulty -->
+          <label> How Difficult is Your Quilt Block? </label>
+          <input type="text" ng-model="ctrl.quilt_block.difficulty" placeholder="easy, medium, hard, extreme"/>
+          <br/>
+          <!-- style -->
+          <label> Style of Your Quilt </label>
+          <input type="text" ng-model="ctrl.quilt_block.type" placeholder="modern, traditional, crazy cool"/>
+          <br/>
+          <!-- img -->
+          <label> Please Enter A Number from the examples above </label>
+          <input type="text" ng-model="ctrl.quilt_block.img" placeholder="1,2,3" />
+          <br/>
+          <!-- piece_size -->
+          <label> Piece Size (without seam allowance) </label>
+          <input type="text" ng-model="ctrl.quilt_block.piece_size" placeholder="inches"/>
+          <br/>
+          <!-- num pieces possible 4, 9, 16, 25, 36-->
+          <label> Number of Pieces (must be a square number such as 4, 9, 16...) </label>
+          <input type="text" ng-model="ctrl.quilt_block.num_pieces" placeholder="square numbers only"/>
+          <br/>
+          <!-- triangles -->
+          <label> How many Square Pieces do you have that are made of Half Triangles? </label>
+          <input type="text" ng-model="ctrl.quilt_block.triangles" placeholder="number of triangled squares"/>
+          <br/>
+          <!-- squares -->
+          <label> How many whole Square Pieces do you have in your quilt block? </label>
+          <input type="text" ng-model="ctrl.quilt_block.squares" placeholder="number of squares" />
+          <br/>
+          <!-- submit -->
+          <input type="submit" value="Make Your Block" />
+        </form>
       </div>
     </div>
     <!--=============END MAKE QUILT============-->
@@ -144,7 +176,17 @@
     <!--============SHOW QUILTS===============-->
     <div id="show-quilt">
       <div class="quilts container">
-
+        <div ng-repeat="info in ctrl.quilt_block">
+          <!-- title -->
+          <!-- creator (user_id) -->
+          <!-- difficulty -->
+          <!-- style -->
+          <!-- img -->
+          <!-- piece size -->
+          <!-- number of pieces -->
+          <!-- triangles -->
+          <!-- squares -->
+        </div>
       </div>
     </div>
     <!--=============END SHOW QUILT============-->
