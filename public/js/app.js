@@ -219,7 +219,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     //full/double 84 x 90
     //queen 90 x 95
     //king 108 x 95
-//DENOTE THAT FABRIC IS BEING ASSUMED AT 44 INCHES WIDE
+
     //pass in the quilt_block, need an http?
     this.quiltBlockCalc = function(id) {
       console.log(quilt_block);
@@ -232,15 +232,33 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         //square pieces measurement with seams
         this.squareWithSeams = this.quilt_block.piece_size + 0.5;
 
-        this.squaresFabric = this.squareWithSeams * this.quilt_block.squares;
+        //this.squaresFabric = this.squareWithSeams * this.quilt_block.squares;
+
+        this.squareCutsFabric = 40/ this.squareWithSeams;
+
+        this.squareStrips = this.quilt_block.squares/ this.squareCutsFabric;
+
+        this.squareFabricLength = this.squareStrips * this.squareWithSeams;
+
+        this.squareYardage = this.squareFabricLength / 36;
 
         //triangle pieces with seams
         this.triangleWithSeams = this.quilt_block.piece_size + 0.75;
 
-        this.trianglesFabric = this.triangleWithSeams * this.quilt_block.triangles;
+        //this.trianglesFabric = this.triangleWithSeams * this.quilt_block.triangles;
+
+        this.triangleCutsFabric = 40/ this.triangleWithSeams;
+
+        this.triangleStrips = this.quilt_block.triangles/ this.triangleCutsFabric;
+
+        this.triangleFabricLength = this.triangleStrips * this.triangleWithSeams;
+
+        this.triangleYardage = this.triangleFabricLength / 36;
 
         //total fabric for a block
-        this.totalBlockFabric = this.squaresFabric + this.trianglesFabric;
+        //this.totalQuiltBlockFabric = this.squaresFabric + this.trianglesFabric;
+
+        this.quiltBlockYardage = this.squareYardage + this.triangleYardage;
 
         // calcs for quilt sizes
         //if quilt size is baby
@@ -251,4 +269,33 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
       }.bind(this));
     };
+
+    //============SAVE QUILT BLOCK YARDAGE============//
+
+    this.saveQuiltBlockYardage = function(quiltBlockYardage, id) {
+      quiltBlockYardage = this.quiltBlockYardage;
+      console.log(quiltBlockYardage);
+      console.log(id);
+      $http({
+        method: "PUT",
+        url: this.url + "/quilt_blocks" + id,
+        data: {
+          quiltBlockYardage : this.quilt_block.yardage
+        },
+        headers: {
+          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+        }
+      }).then(function(response) {
+        console.log(response);
+        if (response.data.status == 401) {
+          this.error = "You need to login or you do not own this quilt block";
+        } else {
+          this.getQuiltBlock(response.data._id);
+          this.quilt_block = response.data;
+          //this.quilt_block = response.data.quilt_block;
+          this.getQuiltBlocks();
+        }
+      }.bind(this));
+    };
+
 }]);
