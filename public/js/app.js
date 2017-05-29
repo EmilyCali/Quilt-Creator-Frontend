@@ -214,11 +214,41 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //============QUILT BLOCK MATH============//
 
-    this.quiltBlockCalc = function() {
-      //depending on the image compute the number of pieces, triangles and squares (add .75 or .5)
-      //depending on the size of the pices multiply these numbers
-      //put out required fabric ammount
-      //maybe also let people pick colors, number of colors determines a division of materials (only evenly at this point)
+    //baby 36 x 60
+    //twin 70 x 90
+    //full/double 84 x 90
+    //queen 90 x 95
+    //king 108 x 95
+//DENOTE THAT FABRIC IS BEING ASSUMED AT 44 INCHES WIDE
+    //pass in the quilt_block, need an http?
+    this.quiltBlockCalc = function(id) {
+      console.log(quilt_block);
+      $http({
+        method: "GET",
+        url: this.url + "/quilt_blocks" + id,
+      }).then(function(response) {
+        this.quilt_block = response.data;
 
+        //square pieces measurement with seams
+        this.squareWithSeams = this.quilt_block.piece_size + 0.5;
+
+        this.squaresFabric = this.squareWithSeams * this.quilt_block.squares;
+
+        //triangle pieces with seams
+        this.triangleWithSeams = this.quilt_block.piece_size + 0.75;
+
+        this.trianglesFabric = this.triangleWithSeams * this.quilt_block.triangles;
+
+        //total fabric for a block
+        this.totalBlockFabric = this.squaresFabric + this.trianglesFabric;
+
+        // calcs for quilt sizes
+        //if quilt size is baby
+        //if quilt size is twin
+        //if quilt size is full
+        //if quilt size is queen
+        //fi quilt size is king
+
+      }.bind(this));
     };
 }]);
