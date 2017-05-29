@@ -144,8 +144,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }.bind(this));
     };
 
-
-
   //==========QUILT BLOCK CREATE==========//
 //NEED TO PASS IN USERID
     this.createQuiltBlock = function() {
