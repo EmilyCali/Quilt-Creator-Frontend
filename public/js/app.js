@@ -147,7 +147,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //==========QUILT BLOCK CREATE==========//
 //NEED TO PASS IN USERID
     this.createQuiltBlock = function(quilt_block, id) {
-      this.user_id = id;
+      //this.user_id = id;
       console.log(quilt_block);
       console.log(id);
       $http({
@@ -165,7 +165,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
           //}
         },
         headers: {
-          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+          Authorization: 
+          //'Bearer' +
+           JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
         console.log(response + "created quilt block");
