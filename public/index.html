@@ -105,6 +105,7 @@
           <br/>
           <label for="years_quilting">Years Quilting:</label>
           <input type="text" ng-model="user.years_quilting" placeholder="{{user.years_quilting}}" value="{{user.years_quilting}}"/>
+          <br/>
           <input type="submit" value="Save Changes"/>
         </form>
         <button ng-click="ctrl.deleteUser(ctrl.user.id)">Delete Account</button>
@@ -122,8 +123,10 @@
       <div class="quilts container">
         <div ng-repeat="quilt_block in ctrl.quilt_blocks">
           <!-- title -->
+          {{quilt_block.title}}
           <!-- creator (user_id) -->
           <!-- difficulty -->
+          {{quilt_block.difficulty}}
           <!-- img -->
         </div>
       </div>
@@ -136,38 +139,44 @@
       <div class="quilts container">
 
         <!-- two triangles count as 1 here, because two make up one block -->
-        <form ng-submit="ctrl.createQuiltBlock(quilt_block, ctrl.user.id)">
+        <form ng-submit="ctrl.createQuiltBlock(ctrl.quiltFormData, ctrl.user.id);">
           <!-- title -->
           <label> Title your Quilt Block </label>
-          <input type="text" ng-model="ctrl.quilt_block.title" placeholder="title" />
+          <input type="text" ng-model="ctrl.quiltFormData.title" placeholder="title" />
           <br/>
           <!-- difficulty -->
           <label> How Difficult is Your Quilt Block? </label>
-          <input type="text" ng-model="ctrl.quilt_block.difficulty" placeholder="easy, medium, hard, extreme"/>
+          <input type="text" ng-model="ctrl.quiltFormData.difficulty" placeholder="easy, medium, hard, extreme"/>
           <br/>
           <!-- style -->
           <label> Style of Your Quilt </label>
-          <input type="text" ng-model="ctrl.quilt_block.type" placeholder="modern, traditional, crazy cool"/>
+          <input type="text" ng-model="ctrl.quiltFormData.type" placeholder="modern, traditional, crazy cool"/>
           <br/>
           <!-- img -->
-          <label> Please Enter A Number from the examples above </label>
+          <!-- <label> Please Enter A Number from the examples above </label>
           <input type="text" ng-model="ctrl.quilt_block.img" placeholder="1,2,3" />
-          <br/>
+          <br/> -->
           <!-- piece_size -->
           <label> Piece Size (without seam allowance) </label>
-          <input type="text" ng-model="ctrl.quilt_block.piece_size" placeholder="inches"/>
+          <input type="text" ng-model="ctrl.quiltFormData.piece_size" placeholder="inches"/>
           <br/>
           <!-- num pieces possible 4, 9, 16, 25, 36-->
-          <label> Number of Pieces (must be a square number such as 4, 9, 16...) </label>
-          <input type="text" ng-model="ctrl.quilt_block.num_pieces" placeholder="square numbers only"/>
+          <label> Number of Pieces: </label>
+          <select ng-model="ctrl.quiltFormData.num_pieces">
+            <option value="4"> 2x2 </option>
+            <option value="9"> 3x3 </option>
+            <option value="16"> 4x4 </option>
+            <option value="25"> 5x5 </option>
+            <option value="36"> 6x6 </option>
+          </select>
           <br/>
           <!-- triangles -->
           <label> How many Square Pieces do you have that are made of Half Triangles? </label>
-          <input type="text" ng-model="ctrl.quilt_block.triangles" placeholder="number of triangled squares"/>
+          <input type="text" ng-model="ctrl.quiltFormData.triangles" placeholder="number of triangled squares"/>
           <br/>
           <!-- squares -->
           <label> How many whole Square Pieces do you have in your quilt block? </label>
-          <input type="text" ng-model="ctrl.quilt_block.squares" placeholder="number of squares" />
+          <input type="text" ng-model="ctrl.quiltFormData.squares" placeholder="number of squares" />
           <br/>
           <!-- submit -->
           <input type="submit" value="Make Your Block" />
@@ -176,22 +185,51 @@
     </div>
     <!--=============END MAKE QUILT============-->
 
-    <!--============SHOW QUILTS===============-->
+    <!--============SHOW QUILT===============-->
     <div id="show-quilt">
       <h3> Quilt </h3>
       <div class="quilts container">
         <div ng-repeat="info in ctrl.quilt_block">
           <!-- title -->
+          {{title}}
           <!-- creator (user_id) -->
           <!-- difficulty -->
+          {{difficulty}}
           <!-- style -->
+          {{style}}
           <!-- img -->
           <!-- piece size -->
+          {{piece_size}}
           <!-- number of pieces -->
+          {{num_pieces}}
           <!-- triangles -->
+          {{triangles}}
           <!-- squares -->
+          {{squares}}
         </div>
         <!-- math for quilt -->
+            <!-- square piece size -->
+            {{ctrl.squareWithSeams}}
+            <!-- square yardage  -->
+            {{ctrl.squareYardage}}
+            <!-- triangle piece size -->
+            {{ctrl.triangleWithSeams}}
+            <!-- triangle yardage  -->
+            {{ctrl.triangleYardage}}
+            <!-- total yardage for quilt block  -->
+            {{ctrl.quiltBlockYardage}}
+
+            <!-- calculate yardage for quilt top  -->
+            <select ng-model="ctrl.quilt_size">
+              <option value="4"> Baby </option>
+              <option value="9"> Twin </option>
+              <option value="16"> Full </option>
+              <option value="25"> Queen </option>
+              <option value="36"> King </option>
+            </select>
+
+            <!-- calculate binding yardage  -->
+
         <!-- save button for quilt yardage which is an edit route -->
         <!-- delete button for quilt -->
       </div>
@@ -207,7 +245,7 @@
       <p> Miss Cali hopes to continue work on this site and build out features such as color variations, quilt visualization and even the ability to use more than one size for pieces. </p>
       <br/>
       <!-- inspiration and thanks -->
-      <p> Miss Cali would like to thank <a href="https://rhjones.github.io/quiltr/">Quiltr</a>, <a href="https://patternjam.com/">Pattern Jam</a>, Sergio Martins, her mother and the General Assembly Team for thier help, inspiration and support. </p>
+      <p> Miss Cali would like to thank <a href="https://rhjones.github.io/quiltr/">Quiltr</a>, <a href="https://patternjam.com/">Pattern Jam</a>, her mother, Sergio Martins and the General Assembly Team for thier help, inspiration and support. </p>
       <!-- how the math is done -->
       <!-- repos -->
       <!-- places to buy fabric -->
@@ -255,7 +293,7 @@
           <li> Fabric Shears </li>
           <li>A Sewing Machine or dextrious Hands for Hand Sewing</li>
           <li>Patience</li>
-          <li>Suggested but not Required</li>
+          <li>Recommended</li>
             <ul>
               <li> A rotary cutter and board </li>
               <li>A ruler</li>

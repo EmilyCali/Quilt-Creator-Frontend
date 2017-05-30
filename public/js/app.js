@@ -10,7 +10,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.user = {};
 
-  //this.formdData = {};
+  this.quiltFormdData = {};
 
   //this.updatedData = {};
 
@@ -147,25 +147,22 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //==========QUILT BLOCK CREATE==========//
 //NEED TO PASS IN USERID
     this.createQuiltBlock = function(quilt_block, id) {
-      //this.user_id = id;
+      this.user_id = id;
       console.log(quilt_block);
       console.log(id);
       $http({
         method: "POST",
         url: this.url + "/quilt_blocks",
         data: {
-          quilt_block: {
+          //quilt_block: {
             title: quilt_block.title,
             difficulty: quilt_block.difficulty,
-            //these will be a number, show multiple blocks to choose and give them numbers
-            img: quilt_block.img,
-            //may not need this, but could make it set automatically based on the image chosen
             num_pieces: quilt_block.num_pieces,
             piece_size: quilt_block.piece_size,
             style: quilt_block.style,
             triangles: quilt_block.triangles,
             squares: quilt_block.squares
-          }
+          //}
         },
         headers: {
           Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
@@ -173,12 +170,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }).then(function(response) {
         console.log(response + "created quilt block");
           // if 401 error message please login
-          if (response.data.status == 401) {
-            this.error = "Please Login to create a quilt";
-          } else {
-            this.quilt_block = response.data.quilt_block;
+          //if (response.data.status == 401) {
+            //this.error = "Please Login to create a quilt";
+          //} else {
+            //this.quilt_block = response.data.quilt_block;
+            this.quiltFormdData = {};
             this.getQuiltBlocks();
-          }
+          //}
       }.bind(this));
     };
 
@@ -207,6 +205,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }).then(function(response) {
         console.log(response);
         this.quilt_block = response.data;
+        //this.quiltBlockCalc(id);
       }.bind(this));
     };
 
