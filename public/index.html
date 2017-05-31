@@ -25,36 +25,33 @@
 </div> -->
 
 
-
-
-
 <!--===============HEADER===============-->
 <header>
   <h2 class="logo">Quilt Creator</h2>
   <nav id="nav">
     <a id="about" href="#">ABOUT</a>
     <a id="faq" href="#">FAQ</a>
-    <a id="login" href="#">LOGIN</a>
-    <a id="signup" href="#">SIGN UP</a>
-    <a id="create-quilt" href="#">CREATE A QUILT</a>
-    <a id="edit-user" href="#">EDIT ACCOUNT</a>
-    <a href="#" ng-click="ctrl.logout()">LOG OUT</a>
+    <a id="login" ng-show="!ctrl.token" href="#">LOGIN</a>
+    <a id="signup" ng-show="!ctrl.token" href="#">SIGN UP</a>
+    <a id="create-quilt" ng-show="ctrl.token" href="#">CREATE A QUILT</a>
+    <a id="edit-user" ng-show="ctrl.token" href="#">EDIT ACCOUNT</a>
+    <a ng-show="ctrl.token" href="#" ng-click="ctrl.logout()">LOG OUT</a>
   </nav>
 </header>
 <!--===============END HEADER============-->
 
 <!--=================MAIN============-->
-<div>
+<div ng-show="!ctrl.homeToIndex">
   <section id="main">
     <h1> Calculate the yards you'll need for your quilting projects, see what other people are working on </h1>
-    <a class="index" href="#">VIEW BLOCKS</a>
+    <a class="index" ng-click="ctrl.changeView();" href="#">VIEW BLOCKS</a>
   </section>
 </div>
 <!--=================END MAIN============-->
 
 
 <!--==========INDEX QUILTS=============-->
-<div id="index-quilts">
+<div ng-if="ctrl.homeToIndex" id="index-quilts">
   <h3> Quilt Blocks </h3>
   <div class="quilts container">
     <div class="indexed" ng-repeat="quilt_block in ctrl.quilt_blocks" ng-click="ctrl.getQuilt(quilt_block.id);" >
@@ -73,9 +70,9 @@
 
 <!--============SHOW QUILT=============-->
 <!-- class modal -->
-<section id="show-quilt">
+<section id="show-quilt" class="modal">
   <!-- class="modal-text" -->
-  <section >
+  <section class="modal-text">
     <div>
       <a class="close">X</a>
     </div>
@@ -101,13 +98,12 @@
     </ul>
     </div>
     <!-- math for quilt -->
-    <button><h3> Let's do some math</h3></button>
     <!-- square piece size -->
-    <p>Square Pieces with Seams: {{ctrl.squareWithSeams}}</p>
+    <p>Square Piece Size with Seams: {{ctrl.squareWithSeams}}</p>
     <!-- square yardage  -->
     <p>Amount of Fabric for Squares: {{ctrl.squareYardage}}</p>
     <!-- triangle piece size -->
-    <p>Triangled Squares with Seams: {{ctrl.triangleWithSeams}}</p>
+    <p>Triangled Square Size with Seams: {{ctrl.triangleWithSeams}}</p>
     <!-- triangle yardage  -->
     <p>Amount of Fabric for Traingled Squares: {{ctrl.triangleYardage}}</p>
     <!-- total yardage for quilt block  -->
@@ -152,7 +148,6 @@
   </section>
 </section>
 <!--=========END CREATE ACCOUNT=========-->
-
 
 <!--============LOGIN MODAL===============-->
 <section id="login-modal" class="modal">
@@ -262,8 +257,6 @@
   </section>
 </section>
 <!--===========END MAKE QUILT==========-->
-
-
 
 <!--============ABOUT===============-->
 <section id="about-modal" class="modal">

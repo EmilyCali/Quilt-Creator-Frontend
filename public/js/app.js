@@ -6,18 +6,24 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
 
   //set variables for usage in functions
-  this.url = "http://localhost:3000"; //or heroku backend
+  this.url = "https://quilt-creator-api.herokuapp.com/" || "http://localhost:3000";
 
+  //empty user object to get form data
   this.user = {};
-
+  //form data for quilt blocks
   this.quiltFormdData = {};
-
-  //this.updatedData = {};
-
+  //quilt block empty object
   this.quilt_block = {};
 
-  //toggle to change views
-  //this.token = false;
+  //toggle to change views when logged in versus logged out
+  this.token = false;
+
+  //toggle to change views from banner to index
+  this.homeToIndex = false;
+
+  this.changeView = function() {
+    this.homeToIndex = true;
+  };
 
   //===========CREATE USER============//
 
@@ -65,7 +71,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
 
         //toggle for token validation to make certain parts of the page show and not show with ngs
-        //this.token = true;
+        this.token = true;
       }
     }.bind(this));
   };
@@ -73,7 +79,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //===========USER LOGOUT===========//
 
   this.logout = function() {
-    //this.token = false;
+    this.token = false;
     localStorage.clear("token");
     location.reload();
   };
@@ -309,11 +315,11 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //===========EDIT USER MODAL============//
   $("#edit-user").on("click", function() {
-    $("#edit-user-modal").css("display", "block");
+    $("#edit-modal").css("display", "block");
   });
 
   $(".close").on("click", function() {
-    $("#edit-user-modal").css("display", "none");
+    $("#edit-modal").css("display", "none");
   });
 
   //===========CREATE MODAL============//
@@ -326,13 +332,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   });
 
   //===========SHOW QUILT============//
-  // $("#quilt-title").on("click", function() {
-  //   $("#show-quilt").css("display", "block");
-  // });
-  //
-  // $(".close").on("click", function() {
-  //   $("#show-quilt").css("display", "none");
-  // });
+  $("#indexed").on("click", function() {
+    $("#show-quilt").css("display", "block");
+  });
+  
+  $(".close").on("click", function() {
+    $("#show-quilt").css("display", "none");
+  });
 
   //===========ABOUT MODAL============//
   $("#about").on("click", function() {
