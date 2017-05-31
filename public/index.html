@@ -53,25 +53,86 @@
 <!--=================END MAIN============-->
 
 
-
-<!-- QUILTS QUILTS QUILTS QUILTS QUILTS QUILTS  -->
-
-
 <!--==========INDEX QUILTS=============-->
 <div id="index-quilts">
   <h3> Quilt Blocks </h3>
   <div class="quilts container">
-    <div ng-repeat="quilt_block in ctrl.quilt_blocks track by $index">
+    <div class="indexed" ng-repeat="quilt_block in ctrl.quilt_blocks" ng-click="ctrl.getQuilt(quilt_block.id);" >
+      <ul>
       <!-- title -->
-      <p id="quilt-title" ng-click="getQuiltBlock($index);">{{quilt_block.title}}</p>
+      <li><h4 id="quilt-title" >{{quilt_block.title}}</h4></li>
       <!-- creator (user_id) -->
       <!-- difficulty -->
-      <p>{{quilt_block.difficulty}}</p>
+      <li><p>{{quilt_block.difficulty}}</p></li>
       <!-- img -->
+    </ul>
+    <!--============SHOW QUILT=============-->
+
+    <!--===========END SHOW QUILT==========-->
+
     </div>
   </div>
 </div>
 <!--===========END QUILT INDEX==========-->
+
+<!--============SHOW QUILT=============-->
+<!-- ng-if="ctrl.quiltBlockId !== quilt_block._id"  -->
+<section id="show-quilt" class="modal">
+  <section class="modal-text">
+    <div>
+      <a class="close">X</a>
+    </div>
+    <h3> Quilt Block </h3>
+    <div>
+      <ul>
+      <!-- title -->
+      <li><p>{{ctrl.quilt_block.title}}</p></li>
+      <!-- creator (user_id) -->
+      <!-- difficulty -->
+      <li><p>{{ctrl.quilt_block.difficulty}}</p></li>
+      <!-- style -->
+      <li><p>{{ctrl.quilt_block.style}}</p></li>
+      <!-- img -->
+      <!-- piece size -->
+      <li><p>{{ctrl.quilt_block.piece_size}}</p></li>
+      <!-- number of pieces -->
+      <li><p>{{ctrl.quilt_block.num_pieces}}</p></li>
+      <!-- triangles -->
+      <li><p>{{ctrl.quilt_block.triangles}}</p></li>
+      <!-- squares -->
+      <li><p>{{ctrl.quilt_block.squares}}</p></li>
+    </ul>
+    </div>
+    <!-- math for quilt -->
+    <button><h3> Let's do some math</h3></button>
+    <!-- square piece size -->
+    <p>Square Pieces with Seams: {{ctrl.squareWithSeams}}</p>
+    <!-- square yardage  -->
+    <p>Amount of Fabric for Squares: {{ctrl.squareYardage}}</p>
+    <!-- triangle piece size -->
+    <p>Triangled Squares with Seams: {{ctrl.triangleWithSeams}}</p>
+    <!-- triangle yardage  -->
+    <p>Amount of Fabric for Traingled Squares: {{ctrl.triangleYardage}}</p>
+    <!-- total yardage for quilt block  -->
+    <p>Total Yardage Needed for Block: {{ctrl.quiltBlockYardage}}</p>
+
+    <!-- calculate yardage for quilt top  -->
+    <select ng-model="ctrl.quilt_size">
+      <option value="4"> Baby </option>
+      <option value="9"> Twin </option>
+      <option value="16"> Full </option>
+      <option value="25"> Queen </option>
+      <option value="36"> King </option>
+    </select>
+
+    <!-- calculate binding yardage  -->
+
+    <!-- save button for quilt yardage which is an edit route -->
+    <!-- delete button for quilt -->
+  </section>
+</section>
+<!--===========END SHOW QUILT==========-->
+
 
 <!--===========CREATE ACCOUNT=============-->
 <section id="signup-modal" class="modal">
@@ -178,13 +239,14 @@
       <input type="text" ng-model="ctrl.quiltFormData.piece_size" placeholder="inches"/>
       <br/>
       <!-- num pieces possible 4, 9, 16, 25, 36-->
+      <!-- make an example area showing what quilt blocks can look like -->
       <label> Number of Pieces: </label>
       <select ng-model="ctrl.quiltFormData.num_pieces">
-        <option value="4"> 2x2 = 4 </option>
-        <option value="9"> 3x3 = 9 </option>
-        <option value="16"> 4x4 = 16 </option>
-        <option value="25"> 5x5 = 25 </option>
-        <option value="36"> 6x6 = 36 </option>
+        <option value="4"> 4 </option>
+        <option value="9"> 9 </option>
+        <option value="16"> 16 </option>
+        <option value="25"> 25 </option>
+        <option value="36"> 36 </option>
       </select>
       <br/>
       <!-- triangles -->
@@ -202,59 +264,7 @@
 </section>
 <!--===========END MAKE QUILT==========-->
 
-<!--============SHOW QUILT=============-->
-<section id="show-quilt" class="modal">
-  <section class="modal-text">
-    <div>
-      <a class="close">X</a>
-    </div>
-    <h3> Quilt Block </h3>
-    <div ng-repeat="info in ctrl.quilt_block">
-      <!-- title -->
-      {{title}}
-      <!-- creator (user_id) -->
-      <!-- difficulty -->
-      {{difficulty}}
-      <!-- style -->
-      {{style}}
-      <!-- img -->
-      <!-- piece size -->
-      {{piece_size}}
-      <!-- number of pieces -->
-      {{num_pieces}}
-      <!-- triangles -->
-      {{triangles}}
-      <!-- squares -->
-      {{squares}}
-    </div>
-    <!-- math for quilt -->
-    <!-- square piece size -->
-    {{ctrl.squareWithSeams}}
-    <!-- square yardage  -->
-    {{ctrl.squareYardage}}
-    <!-- triangle piece size -->
-    {{ctrl.triangleWithSeams}}
-    <!-- triangle yardage  -->
-    {{ctrl.triangleYardage}}
-    <!-- total yardage for quilt block  -->
-    {{ctrl.quiltBlockYardage}}
 
-    <!-- calculate yardage for quilt top  -->
-    <select ng-model="ctrl.quilt_size">
-      <option value="4"> Baby </option>
-      <option value="9"> Twin </option>
-      <option value="16"> Full </option>
-      <option value="25"> Queen </option>
-      <option value="36"> King </option>
-    </select>
-
-    <!-- calculate binding yardage  -->
-
-    <!-- save button for quilt yardage which is an edit route -->
-    <!-- delete button for quilt -->
-  </section>
-</section>
-<!--===========END SHOW QUILT==========-->
 
 <!--============ABOUT===============-->
 <section id="about-modal" class="modal">
