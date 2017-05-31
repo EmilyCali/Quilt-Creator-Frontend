@@ -66,10 +66,6 @@
       <li><p>{{quilt_block.difficulty}}</p></li>
       <!-- img -->
     </ul>
-    <!--============SHOW QUILT=============-->
-
-    <!--===========END SHOW QUILT==========-->
-
     </div>
   </div>
 </div>
@@ -196,11 +192,13 @@
       <div>
         <h3>Edit Your Account {{user.username}}</h3>
       </div>
+      <input type="hidden" ng-model="user.username" value="ctrl.user.username" />
+      <input type="hidden" ng-model="user.password" value="ctrl.user.password" />
       <label>Favorite Block:</label>
-      <input type="text" ng-model="user.favorite_block" placeholder="{{user.favorite_block}}" value="{{user.favorite_block}}"/>
+      <input type="text" ng-model="user.favorite_block" placeholder="{{ctrl.user.favorite_block}}" value="{{ctrl.user.favorite_block}}"/>
       <br/>
       <label>Years Quilting:</label>
-      <input type="text" ng-model="user.years_quilting" placeholder="{{user.years_quilting}}" value="{{user.years_quilting}}"/>
+      <input type="text" ng-model="user.years_quilting" placeholder="{{ctrl.user.years_quilting}}" value="{{ctrl.user.years_quilting}}"/>
       <br/>
       <input type="submit" value="Save Changes"/>
     </form>
@@ -228,7 +226,7 @@
       <br/>
       <!-- style -->
       <label> Style of Your Quilt </label>
-      <input type="text" ng-model="ctrl.quiltFormData.type" placeholder="modern, traditional, crazy cool"/>
+      <input type="text" ng-model="ctrl.quiltFormData.style" placeholder="modern, traditional, crazy cool"/>
       <br/>
       <!-- img -->
       <!-- <label> Please Enter A Number from the examples above </label>

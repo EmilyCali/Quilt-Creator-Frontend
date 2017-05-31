@@ -87,10 +87,11 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       method: "PUT",
       url: this.url + "/users/" + id,
       data :{
-        user: {
-          favorite_block: user.favorite_block,
-          years_quilting: user.years_quilting
-        }
+        user: user
+        // user: {
+        //   favorite_block: user.favorite_block,
+        //   years_quilting: user.years_quilting
+        // }
       },
       headers: {
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
@@ -100,7 +101,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       if (response.data.status == 401) {
         this.error = "Unauthorized";
       } else {
-        this.getUser(response.data._id);
+        this.getUser(response.data.id);
         this.user = response.data;
       }
     }.bind(this));
@@ -184,7 +185,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   // };
 
   this.getQuilt = function(id) {
-    this.quiltBlockId = id;
+    //this.quiltBlockId = id;
     console.log("getting one quilt block");
     console.log(id);
     $http({
@@ -207,23 +208,15 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //queen 90 x 95
   //king 108 x 95
 
-  //pass in the quilt_block, need an http?
   this.quiltBlockCalc = function() {
-    // console.log(quilt_block);
-    // $http({
-    //   method: "GET",
-    //   url: this.url + "/quilt_blocks" + id,
-    // }).then(function(response) {
-    //this.quilt_block = response.data;
-
     //square pieces measurement with seams
     this.squareWithSeams = this.quilt_block.piece_size + 0.5;
 
     //this.squaresFabric = this.squareWithSeams * this.quilt_block.squares;
 
-    this.squareCutsFabric = 40/ this.squareWithSeams;
+    this.squareCutsFabric = 40 / this.squareWithSeams;
 
-    this.squareStrips = this.quilt_block.squares/ this.squareCutsFabric;
+    this.squareStrips = this.quilt_block.squares / this.squareCutsFabric;
 
     this.squareFabricLength = this.squareStrips * this.squareWithSeams;
 
@@ -234,9 +227,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
     //this.trianglesFabric = this.triangleWithSeams * this.quilt_block.triangles;
 
-    this.triangleCutsFabric = 40/ this.triangleWithSeams;
+    this.triangleCutsFabric = 40 / this.triangleWithSeams;
 
-    this.triangleStrips = this.quilt_block.triangles/ this.triangleCutsFabric;
+    this.triangleStrips = this.quilt_block.triangles / this.triangleCutsFabric;
 
     this.triangleFabricLength = this.triangleStrips * this.triangleWithSeams;
 
