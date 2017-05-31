@@ -19,7 +19,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //toggle to change views
   //this.token = false;
 
-  //===============CREATE USER===============//
+  //===========CREATE USER============//
 
   this.createAccount = function(user) {
     console.log(user);
@@ -43,7 +43,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }.bind(this));
   };
 
-  //===============LOGIN USER===============//
+  //==========LOGIN USER==========//
 
   this.login = function(user) {
     console.log(user);
@@ -70,7 +70,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }.bind(this));
   };
 
-  //===============USER LOGOUT===============//
+  //===========USER LOGOUT===========//
 
   this.logout = function() {
     //this.token = false;
@@ -78,7 +78,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     location.reload();
   };
 
-  //===============USER EDIT===============//
+  //===========USER EDIT===========//
 
   this.editUser = function(user, id) {
     console.log(user);
@@ -93,7 +93,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         }
       },
       headers: {
-        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
       console.log(response);
@@ -107,14 +107,14 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   };
 
 
-  //===============USER SHOW===============//
+  //===========USER SHOW============//
 
   this.getUser = function(id) {
     $http({
       method: "GET",
       url: this.url + "/users/" + id, //localStorage.getItem("userId"),
       headers: {
-        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
       console.log(response);
@@ -126,9 +126,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }.bind(this));
   };
 
-  //===============USER GETID===============//
+  //===========USER GETID===========//
 
-  //===============USER DELETE===============//
+  //==========USER DELETE===========//
 
     this.deleteUser = function(id) {
       console.log("delete clicked");
@@ -136,7 +136,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         method: "DELETE",
         url: this.url + "/users/" + id,
         headers: {
-          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+          Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
         console.log(response + "delete");
@@ -144,30 +144,30 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }.bind(this));
     };
 
-  //==========QUILT BLOCK CREATE==========//
+  //========QUILT BLOCK CREATE========//
 //NEED TO PASS IN USERID
     this.createQuiltBlock = function(quilt_block, id) {
       //this.user_id = id;
+      console.log(JSON.parse(localStorage.getItem('token')));
       console.log(quilt_block);
       console.log(id);
       $http({
         method: "POST",
         url: this.url + "/quilt_blocks",
-        data: {
-          //quilt_block: {
-            title: quilt_block.title,
-            difficulty: quilt_block.difficulty,
-            num_pieces: quilt_block.num_pieces,
-            piece_size: quilt_block.piece_size,
-            style: quilt_block.style,
-            triangles: quilt_block.triangles,
-            squares: quilt_block.squares
-          //}
-        },
+        data:
+          {quilt_block: quilt_block},//: //{
+          //   title: quilt_block.title,
+          //   difficulty: quilt_block.difficulty,
+          //   num_pieces: quilt_block.num_pieces,
+          //   piece_size: quilt_block.piece_size,
+          //   style: quilt_block.style,
+          //   triangles: quilt_block.triangles,
+          //   squares: quilt_block.squares
+          // }
+
         headers: {
-          Authorization: 
-          //'Bearer' +
-           JSON.parse(localStorage.getItem('token'))
+          Authorization:
+          'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
         console.log(response + "created quilt block");
@@ -182,7 +182,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }.bind(this));
     };
 
-  //===========QUILT BLOCK INDEX===========//
+  //=========QUILT BLOCK INDEX=========//
 
     this.getQuiltBlocks = function() {
       $http({
@@ -197,7 +197,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
     this.getQuiltBlocks();
 
-  //============QUILT BLOCK SHOW=============//
+  //========QUILT BLOCK SHOW========//
 
     this.getQuiltBlock = function(id) {
       console.log(id);
@@ -211,9 +211,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }.bind(this));
     };
 
-  //=============QUILT BLOCK DELETE==========//
+  //=========QUILT BLOCK DELETE=======//
 
-  //============QUILT BLOCK MATH============//
+  //=======QUILT BLOCK MATH========//
 
     //baby 36 x 60
     //twin 70 x 90
@@ -271,7 +271,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }.bind(this));
     };
 
-    //============SAVE QUILT BLOCK YARDAGE============//
+    //====SAVE QUILT BLOCK YARDAGE=====//
 
     this.saveQuiltBlockYardage = function(quiltBlockYardage, id) {
       quiltBlockYardage = this.quiltBlockYardage;
@@ -284,7 +284,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
           quiltBlockYardage : this.quilt_block.yardage
         },
         headers: {
-          Authorization: 'Bearer' + JSON.parse(localStorage.getItem('token'))
+          Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
         }
       }).then(function(response) {
         console.log(response);
@@ -300,3 +300,69 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     };
 
 }]);
+
+
+//=================MODALS================//
+
+//===========SIGNUP MODAL============//
+// $("#signup").on("click", function() {
+//   $("#signup-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#signup-modal").css("display", "none");
+// });
+
+//===========LOGIN MODAL============//
+// $("#login").on("click", function() {
+//   $("#login-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#login-modal").css("display", "none");
+// });
+
+//===========EDIT USER MODAL============//
+// $("#edit-user").on("click", function() {
+//   $("#edit-user-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#edit-user-modal").css("display", "none");
+// });
+
+//===========CREATE MODAL============//
+// $("#create-quilt").on("click", function() {
+//   $("#create-quilt-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#create-quilt-modal").css("display", "none");
+// });
+
+//===========SHOW QUILT============//
+// $("#quilt-title").on("click", function() {
+//   $("#show-quilt").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#show-quilt").css("display", "none");
+// });
+
+//===========ABOUT MODAL============//
+// $("#about").on("click", function() {
+//   $("#ABOUT-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#about-modal").css("display", "none");
+// });
+
+//===========FAQ MODAL============//
+// $("#faq").on("click", function() {
+//   $("#faq-modal").css("display", "block");
+// });
+//
+// $(".close").on("click", function() {
+//   $("#faq-modal").css("display", "none");
+// });

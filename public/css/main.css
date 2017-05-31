@@ -1,0 +1,52 @@
+body {
+  /*backgroudn image of blocks*/
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+header {
+  position: static;
+  top: 0;
+  background-color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  letter-spacing: 0.3px;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+nav a:hover {
+  /*color*/
+  text-decoration: none;
+}
+
+main {
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: repeat x;
+  align-items: center;
+  min-height: 80vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

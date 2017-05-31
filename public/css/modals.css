@@ -1,0 +1,34 @@
+/*=================MODALS==================*/
+#signup-modal,
+#login-modal, #edit-modal, #create-quilt-modal, #about-modal,
+ #faq-modal {
+  overflow: auto;
+  display: none;
+}
+
+.modal {
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  overflow: scroll;
+}
+
+.close {
+  color: grey;
+  font-size: 180%;
+  padding-top: 3%;
+}
+
+.modal-text {
+  background-color: white;
+  height: 500px;
+  width: 400px;
+  border-radius: 5px;
+  margin: 20px auto;
+  box-shadow: 0 3px 3px grey;
+  padding: 2px;
+}
