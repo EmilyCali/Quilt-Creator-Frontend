@@ -1,8 +1,6 @@
 /*=================MODALS==================*/
-#signup-modal,
-#login-modal, #edit-modal, #create-quilt-modal, #about-modal,
- #faq-modal {
-  overflow: auto;
+#signup-modal, #login-modal, #edit-modal, #create-quilt-modal, #about-modal, #faq-modal {
+  overflow: scroll;
   display: none;
 }
 

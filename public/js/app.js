@@ -211,33 +211,27 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   this.quiltBlockCalc = function() {
     //square pieces measurement with seams
     this.squareWithSeams = this.quilt_block.piece_size + 0.5;
-
-    //this.squaresFabric = this.squareWithSeams * this.quilt_block.squares;
-
+    //cuts you can make across the width of the fabric assumed at 40 inches wide
     this.squareCutsFabric = 40 / this.squareWithSeams;
-
+    //strips you can make based on number of squares and the cuts determined
     this.squareStrips = this.quilt_block.squares / this.squareCutsFabric;
-
+    //length of fabric you will need
     this.squareFabricLength = this.squareStrips * this.squareWithSeams;
-
+    //length determined divided by 36 whihc is 1 yard
     this.squareYardage = this.squareFabricLength / 36;
 
     //triangle pieces with seams
     this.triangleWithSeams = this.quilt_block.piece_size + 0.75;
-
-    //this.trianglesFabric = this.triangleWithSeams * this.quilt_block.triangles;
-
+    //cuts you can make across the width of the fabric assumed at 40 inches wide
     this.triangleCutsFabric = 40 / this.triangleWithSeams;
-
+    //strips you can make based on number of squares and the cuts determined
     this.triangleStrips = this.quilt_block.triangles / this.triangleCutsFabric;
-
+    //length of fabric you will need
     this.triangleFabricLength = this.triangleStrips * this.triangleWithSeams;
-
+    //length determined divided by 36 whihc is 1 yard
     this.triangleYardage = this.triangleFabricLength / 36;
 
-    //total fabric for a block
-    //this.totalQuiltBlockFabric = this.squaresFabric + this.trianglesFabric;
-
+    // total yardage needed for the block
     this.quiltBlockYardage = this.squareYardage + this.triangleYardage;
 
     // calcs for quilt sizes
@@ -293,71 +287,69 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.getQuiltBlocks();
 
+  //=================MODALS================//
+
+  //===========SIGNUP MODAL============//
+  $("#signup").on("click", function() {
+    $("#signup-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#signup-modal").css("display", "none");
+  });
+
+  //===========LOGIN MODAL============//
+  $("#login").on("click", function() {
+    $("#login-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#login-modal").css("display", "none");
+  });
+
+  //===========EDIT USER MODAL============//
+  $("#edit-user").on("click", function() {
+    $("#edit-user-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#edit-user-modal").css("display", "none");
+  });
+
+  //===========CREATE MODAL============//
+  $("#create-quilt").on("click", function() {
+    $("#create-quilt-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#create-quilt-modal").css("display", "none");
+  });
+
+  //===========SHOW QUILT============//
+  // $("#quilt-title").on("click", function() {
+  //   $("#show-quilt").css("display", "block");
+  // });
+  //
+  // $(".close").on("click", function() {
+  //   $("#show-quilt").css("display", "none");
+  // });
+
+  //===========ABOUT MODAL============//
+  $("#about").on("click", function() {
+    $("#about-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#about-modal").css("display", "none");
+  });
+
+  //===========FAQ MODAL============//
+  $("#faq").on("click", function() {
+    $("#faq-modal").css("display", "block");
+  });
+
+  $(".close").on("click", function() {
+    $("#faq-modal").css("display", "none");
+  });
 
 }]);
-
-
-//=================MODALS================//
-
-//===========SIGNUP MODAL============//
-// $("#signup").on("click", function() {
-//   $("#signup-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#signup-modal").css("display", "none");
-// });
-
-//===========LOGIN MODAL============//
-// $("#login").on("click", function() {
-//   $("#login-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#login-modal").css("display", "none");
-// });
-
-//===========EDIT USER MODAL============//
-// $("#edit-user").on("click", function() {
-//   $("#edit-user-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#edit-user-modal").css("display", "none");
-// });
-
-//===========CREATE MODAL============//
-// $("#create-quilt").on("click", function() {
-//   $("#create-quilt-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#create-quilt-modal").css("display", "none");
-// });
-
-//===========SHOW QUILT============//
-// $("#quilt-title").on("click", function() {
-//   $("#show-quilt").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#show-quilt").css("display", "none");
-// });
-
-//===========ABOUT MODAL============//
-// $("#about").on("click", function() {
-//   $("#ABOUT-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#about-modal").css("display", "none");
-// });
-
-//===========FAQ MODAL============//
-// $("#faq").on("click", function() {
-//   $("#faq-modal").css("display", "block");
-// });
-//
-// $(".close").on("click", function() {
-//   $("#faq-modal").css("display", "none");
-// });
