@@ -29,7 +29,7 @@
 
 <!--===============HEADER===============-->
 <header>
-  <h2 id="logo">Quilt Creator</h2>
+  <h1 id="logo">Quilt Creator</h1>
   <nav id="nav">
     <a id="about" href="#">ABOUT</a>
     <a id="faq" href="#">FAQ</a>
@@ -46,53 +46,33 @@
 <div ng-show="!ctrl.homeToIndex">
   <section id="main">
     <div class="banner-text">
-      <h1> Plan Your Quilt Blocks </h1>
-      <h1> Calculate Block Yardage </h1>
-      <h1> See What Others Are Making </h1>
-      <a class="index" ng-click="ctrl.changeView();" href="#">VIEW BLOCKS</a>
+      <div class="inner-banner">
+        <h1> Plan Your Quilt Blocks </h1>
+        <h1> Calculate Block Yardage </h1>
+        <h1> See What Others Are Making </h1>
+        <a class="index btn" ng-click="ctrl.changeView();" href="#">VIEW BLOCKS</a>
+      </div>
     </div>
-    <img class="banner-img" src="/assets/block_07.png" />
-    <img class="banner-img" src="/assets/block_11.png" />
-    <img class="banner-img" src="/assets/block_13.png" />
-    <img class="banner-img" src="/assets/block_15.png" />
-    <img class="banner-img" src="/assets/block_17.png" />
-    <img class="banner-img" src="/assets/block_21.png" />
-    <img class="banner-img" src="/assets/block_23.png" />
-    <img class="banner-img" src="/assets/block_24.png" />
-    <img class="banner-img" src="/assets/block_25.png" />
-    <img class="banner-img" src="/assets/block_26.png" />
-    <img class="banner-img" src="/assets/block_27.png" />
-    <img class="banner-img" src="/assets/block_28.png" />
-    <img class="banner-img" src="/assets/block_29.png" />
-    <img class="banner-img" src="/assets/block_30.png" />
-    <img class="banner-img" src="/assets/block_31.png" />
-    <img class="banner-img" src="/assets/block_32.png" />
-    <img class="banner-img" src="/assets/block_33.png" />
-    <img class="banner-img" src="/assets/block_35.png" />
-    <img class="banner-img" src="/assets/block_36.png" />
-    <img class="banner-img" src="/assets/block_37.png" />
-    <img class="banner-img" src="/assets/block_38.png" />
-    <img class="banner-img" src="/assets/block_40.png" />
-    <img class="banner-img" src="/assets/block_41.png" />
-    <img class="banner-img" src="/assets/block_42.png" />
   </section>
 </div>
 <!--=================END MAIN============-->
 
 
 <!--==========INDEX QUILTS=============-->
-<div ng-if="ctrl.homeToIndex" id="index-quilts">
-  <h3> Quilt Blocks </h3>
-  <div class="quilts container">
+<div ng-if="ctrl.homeToIndex">
+  <div class="quilt-head">
+    <h2> Quilt Blocks </h2>
+  </div>
+  <div class="index-quilts">
     <div class="indexed" ng-repeat="quilt_block in ctrl.quilt_blocks" ng-click="ctrl.getQuilt(quilt_block.id);" >
       <ul>
-      <!-- title -->
-      <li><h4 id="quilt-title" >{{quilt_block.title}}</h4></li>
-      <!-- creator (user_id) -->
-      <!-- difficulty -->
-      <li><p>{{quilt_block.difficulty}}</p></li>
-      <!-- img -->
-    </ul>
+        <!-- title -->
+        <li><h3 id="quilt-title" >{{quilt_block.title}}</h3></li>
+        <!-- creator (user_id) -->
+        <!-- difficulty -->
+        <li><p>{{quilt_block.difficulty}}</p></li>
+        <!-- img -->
+      </ul>
     </div>
   </div>
 </div>
@@ -100,59 +80,65 @@
 
 <!--============SHOW QUILT=============-->
 <!-- class modal -->
-<section id="show-quilt" class="modal">
+<section id="show-quilt" ng-if="ctrl.seeBlock">
   <!-- class="modal-text" -->
-  <section class="modal-text">
-    <div>
-      <a class="close">X</a>
-    </div>
-    <h3> Quilt Block </h3>
-    <div>
+  <section >
+    <!-- <div>
+    <a class="close">X</a>
+  </div> -->
+  <div class="quilt-head">
+    <h2> Quilt Block </h2>
+  </div>
+  <div id="quilt-block-data">
+    <div id="quiltattributes">
       <ul>
-      <!-- title -->
-      <li><p>{{ctrl.quilt_block.title}}</p></li>
-      <!-- creator (user_id) -->
-      <!-- difficulty -->
-      <li><p>{{ctrl.quilt_block.difficulty}}</p></li>
-      <!-- style -->
-      <li><p>{{ctrl.quilt_block.style}}</p></li>
-      <!-- img -->
-      <!-- piece size -->
-      <li><p>{{ctrl.quilt_block.piece_size}}</p></li>
-      <!-- number of pieces -->
-      <li><p>{{ctrl.quilt_block.num_pieces}}</p></li>
-      <!-- triangles -->
-      <li><p>{{ctrl.quilt_block.triangles}}</p></li>
-      <!-- squares -->
-      <li><p>{{ctrl.quilt_block.squares}}</p></li>
-    </ul>
+        <!-- title -->
+        <li><p><label>Title:</label> {{ctrl.quilt_block.title}}</p></li>
+        <!-- creator (user_id) -->
+        <!-- difficulty -->
+        <li><p><label>Difficulty:</label> {{ctrl.quilt_block.difficulty}}</p></li>
+        <!-- style -->
+        <li><p><label>Style:</label> {{ctrl.quilt_block.style}}</p></li>
+        <!-- img -->
+        <!-- piece size -->
+        <li><p><label>Piece Size:</label> {{ctrl.quilt_block.piece_size}} inches</p></li>
+        <!-- number of pieces -->
+        <li><p><label>Number of Pieces:</label> {{ctrl.quilt_block.num_pieces}}</p></li>
+        <!-- triangles -->
+        <li><p><label>Number of Pieces Made of Triagles:</label> {{ctrl.quilt_block.triangles}}</p></li>
+        <!-- squares -->
+        <li><p><label>Number of Whole Square Pieces:</label> {{ctrl.quilt_block.squares}}</p></li>
+      </ul>
     </div>
-    <!-- math for quilt -->
-    <!-- square piece size -->
-    <p>Square Piece Size with Seams: {{ctrl.squareWithSeams}}</p>
-    <!-- square yardage  -->
-    <p>Amount of Fabric for Squares: {{ctrl.squareYardage}}</p>
-    <!-- triangle piece size -->
-    <p>Triangled Square Size with Seams: {{ctrl.triangleWithSeams}}</p>
-    <!-- triangle yardage  -->
-    <p>Amount of Fabric for Traingled Squares: {{ctrl.triangleYardage}}</p>
-    <!-- total yardage for quilt block  -->
-    <p>Total Yardage Needed for Block: {{ctrl.quiltBlockYardage}}</p>
-
-    <!-- calculate yardage for quilt top  -->
-    <select ng-model="ctrl.quilt_size">
-      <option value="4"> Baby </option>
-      <option value="9"> Twin </option>
-      <option value="16"> Full </option>
-      <option value="25"> Queen </option>
-      <option value="36"> King </option>
-    </select>
-
+    <div id="quiltmath">
+      <ul>
+        <!-- math for quilt -->
+        <!-- square piece size -->
+        <li><p><label>Square Piece Size with Seams:</label><br/> {{ctrl.squareWithSeams}} inches</p></li>
+        <!-- square yardage  -->
+        <li><p><label>Amount of Fabric for Squares:</label><br/> {{ctrl.squareYardage}} yards</p></li>
+        <!-- triangle piece size -->
+        <li><p><label>Triangled Square Size with Seams:</label><br/> {{ctrl.triangleWithSeams}} inches</p></li>
+        <!-- triangle yardage  -->
+        <li><p><label>Amount of Fabric for Triangled Squares:</label><br/> {{ctrl.triangleYardage}} yards</p></li>
+        <!-- total yardage for quilt block  -->
+        <li><p><label>Total Yardage Needed for Block:</label><br/> {{ctrl.quiltBlockYardage}} yards</p></li>
+      </ul>
+      <!-- calculate yardage for quilt top  -->
+      <select ng-model="ctrl.quilt_size">
+        <option value="4"> Baby </option>
+        <option value="9"> Twin </option>
+        <option value="16"> Full </option>
+        <option value="25"> Queen </option>
+        <option value="36"> King </option>
+      </select>
+    </div>
     <!-- calculate binding yardage  -->
 
     <!-- save button for quilt yardage which is an edit route -->
     <!-- delete button for quilt -->
-  </section>
+  </div>
+</section>
 </section>
 <!--===========END SHOW QUILT==========-->
 
@@ -167,11 +153,11 @@
     <!-- Button to close the modal END-->
     <form ng-submit="ctrl.createAccount(user)">
       <div>
-        <h3>Create Account</h3>
+        <h2>Create Account</h2>
       </div>
-      <input type="text" ng-model="user.username" placeholder="username"/>
+      <input type="text" ng-model="user.username" placeholder="username" required/>
       <br/>
-      <input type="password" ng-model="user.password" placeholder="password" required min-length="8"/>
+      <input type="password" ng-model="user.password" placeholder="password" required />
       <br/>
       <input class="btn" type="submit" value="Sign Up"/>
     </form>
@@ -189,7 +175,7 @@
     <!-- Button to close the modal END-->
     <form ng-submit="ctrl.login(user);">
       <div>
-        <h3>Login</h3>
+        <h2>Login</h2>
       </div>
       <label>Username:</label>
       <input type="text" ng-model="user.username" placeholder="username"/>
@@ -198,10 +184,9 @@
       <input type="password" ng-model="user.password" placeholder="password" />
       <br/>
       <input class="btn" type="submit" value="Login"/>
+      <p>Welcome: <br/>{{ctrl.user.username}} </p>
+      <div>{{ctrl.error}}</div>
     </form>
-    <p>Welcome: {{ctrl.user.username}} </p>
-    <div>{{ctrl.error}}</div>
-    <!-- removed ng repeat for user -->
   </section>
 </section>
 <!--==========END LOGIN MODAL============-->
@@ -216,7 +201,7 @@
     <!-- Button to close the modal END-->
     <form ng-submit="ctrl.editUser(user, ctrl.user.id);">
       <div>
-        <h3>Edit Your Account {{user.username}}</h3>
+        <h2>Edit Your Account {{user.username}}</h2>
       </div>
       <input type="hidden" ng-model="user.username" value="ctrl.user.username" />
       <input type="hidden" ng-model="user.password" value="ctrl.user.password" />
@@ -226,7 +211,7 @@
       <label>Years Quilting:</label>
       <input type="text" ng-model="user.years_quilting" placeholder="{{ctrl.user.years_quilting}}" value="{{ctrl.user.years_quilting}}"/>
       <br/>
-      <input type="submit" value="Save Changes"/>
+      <input class="btn" type="submit" value="Save Changes"/>
     </form>
     <button ng-click="ctrl.deleteUser(ctrl.user.id);">Delete Account</button>
   </section>
@@ -239,7 +224,7 @@
     <div>
       <a class="close">X</a>
     </div>
-    <h3> Create A Quilt Block </h3>
+    <h2> Create A Quilt Block </h2>
     <!-- two triangles count as 1 here, because two make up one block -->
     <form ng-submit="ctrl.createQuiltBlock(ctrl.quiltFormData, ctrl.user.id);">
       <!-- title -->
@@ -254,10 +239,6 @@
       <label> Style of Your Quilt </label>
       <input type="text" ng-model="ctrl.quiltFormData.style" placeholder="modern, traditional, crazy cool"/>
       <br/>
-      <!-- img -->
-      <!-- <label> Please Enter A Number from the examples above </label>
-      <input type="text" ng-model="ctrl.quilt_block.img" placeholder="1,2,3" />
-      <br/> -->
       <!-- piece_size -->
       <label> Piece Size (without seam allowance) </label>
       <input type="text" ng-model="ctrl.quiltFormData.piece_size" placeholder="inches"/>
@@ -282,7 +263,7 @@
       <input type="text" ng-model="ctrl.quiltFormData.squares" placeholder="number of squares" />
       <br/>
       <!-- submit -->
-      <input type="submit" value="Make Your Block" />
+      <input class="btn" type="submit" value="Make Your Block" />
     </form>
   </section>
 </section>
@@ -294,9 +275,9 @@
     <div>
       <a class="close">X</a>
     </div>
-    <h3> About </h3>
+    <h2> About </h2>
     <!-- what is this app -->
-    <div>
+    <div class="text">
       <p> This app was created by Emily Cali for her final project during the General Assembly Web Development Immersive Remote program in the spring of 2017. With the high intensity of this course Miss Cali did not have much time to practice one of her favorite hobbies, quilting, and came up with the idea for this site because she was missing making blankets. In addition to this, math is not Miss Cali's strongest suite, and she found that she would often have trouble accurately determining the ammount of fabric she would need for a quilt. She wanted to create an app that would help her discover the total yardage of fabric necessary for a project. </p>
       <br/>
       <p> Miss Cali hopes to continue work on this site and build out features such as color variations, quilt visualization and even the ability to use more than one size for pieces. </p>
@@ -314,15 +295,15 @@
     <div>
       <a class="close">X</a>
     </div>
-    <h3> FAQ </h3>
-    <div>
-      <p> So How Is This App Calculating My Yardage? </p>
+    <h2> FAQ </h2>
+    <div class="text">
+      <label><p> So How Is This App Calculating My Yardage? </p></label>
       <p> This app assumes that fabric will be purchased by the yard (36 inches) and that that fabric will be 40 inches wide. With these two numbers and the provided number of squares, triangles(entered as one square) and piece size in inches this app is able to find the total yardage necessary for your block. </p>
       <br/>
-      <p> What if I want to know how much fabric to get for different colored pieces? </p>
+      <label><p> What if I want to know how much fabric to get for different colored pieces? </p></label>
       <p> That's in the works! For now, you can assume an even split of the total yardage by each color you would like. If you are not using an even amount of each color think about your colors as percents of the quilt and multiply that percent to your total yardage to determine the approximate measures of each color you will need. You may also wish to add a few extra inches to each yardage outcome just to be safe. </p>
       <br/>
-      <p> What are some good online places to buy fabric? </p>
+      <label><p> What are some good online places to buy fabric? </p></label>
       <ul>
         <li><a href="https://www.fabric.com/"> Fabric.com </a></li>
         <li><a href="http://www.joann.com/"> Joann Fabrics </a></li>
@@ -331,7 +312,7 @@
         <li><a href="https://www.spoonflower.com/welcome"> Spoonflower </a></li>
       </ul>
       <br/>
-      <p> Besides fabric for the block/ front of the quilt, what else will I need? </p>
+      <label><p> Besides fabric for the block/ front of the quilt, what else will I need? </p></label>
       <p> You will need: </p>
       <ul>
         <li>Backing Fabric</li>
@@ -363,7 +344,7 @@
         </ul>
       </ul>
       <br/>
-      <p> Wait, how do I actually make a quilt? </p>
+      <label><p> Wait, how do I actually make a quilt? </p></label>
       <p> Here are some fun tutorial sites: </p>
       <ul>
         <li><a href="https://www.connectingthreads.com/Tutorials/Quilting_Tutorials.html">Connecting Threads</a></li>

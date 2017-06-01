@@ -1,8 +1,13 @@
 /*=================MODALS==================*/
-#signup-modal, #login-modal, #edit-modal, #show-quilt, #create-quilt-modal, #about-modal, #faq-modal {
+#signup-modal, #login-modal, #edit-modal, #create-quilt-modal, #about-modal, #faq-modal {
   overflow: auto;
   display: none;
 }
+
+ form {
+  text-align: center;
+}
+
 
 .modal {
   background-color: rgba(0,0,0,0.4);
@@ -31,4 +36,8 @@
   box-shadow: 0 3px 3px grey;
   padding: 3px;
   overflow: auto;
+}
+
+.text {
+  padding: 4px;
 }

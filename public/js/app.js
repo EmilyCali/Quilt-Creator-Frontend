@@ -21,6 +21,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //toggle to change views from banner to index
   this.homeToIndex = false;
+  this.seeBlock = false;
 
   this.changeView = function() {
     this.homeToIndex = true;
@@ -200,6 +201,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       url: this.url + "/quilt_blocks/" + id,
     }).then(function(response) {
       console.log(response);
+      this.seeBlock = true;
       this.quilt_block = response.data;
       this.quiltBlockCalc(id);
     }.bind(this));
@@ -333,13 +335,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   });
 
   //===========SHOW QUILT============//
-  $("#indexed").on("click", function() {
-    $("#show-quilt").css("display", "block");
-  });
-
-  $(".close").on("click", function() {
-    $("#show-quilt").css("display", "none");
-  });
+  // $("#quilt-title").on("click", function() {
+  //   $("#show-quilt").css("display", "block");
+  // });
+  //
+  // $(".close").on("click", function() {
+  //   $("#show-quilt").css("display", "none");
+  // });
 
   //===========ABOUT MODAL============//
   $("#about").on("click", function() {
