@@ -9,15 +9,14 @@ body {
   letter-spacing: 10px;
 }
 
+/*these are the links in the nave and modal as well as any buttons that have an a tag*/
 a {
   font-family: "PWDotted";
   font-size: 22px;
+  text-decoration: none;
 }
 
-h1 {
-  font-family: "Quicksand Dash";
-}
-
+/*this is the quilt index and quilt show text*/
 h2 {
   font-family: "Amatic SC";
   font-size: 30px;
@@ -25,23 +24,21 @@ h2 {
   letter-spacing: 10px;
 }
 
+/*this is the text on the splash page*/
 .banner-text {
   font-size: 15px;
 }
 
+/*this is the text before input boxes, and the text before attribute listings*/
 label {
   font-size: 18px;
-}
-
-a {
-  text-decoration: none;
 }
 
 ul {
   list-style: none;
 }
 
-
+/*these are typefaces in the assets folder*/
 @font-face {
   font-family: "PWDotted";
   src: url("../assets/PWDottedFont.ttf");

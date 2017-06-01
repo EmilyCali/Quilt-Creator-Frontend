@@ -1,16 +1,19 @@
 /*=================MODALS==================*/
+/*make all the modals hidden until the jquery call*/
 #signup-modal, #login-modal, #edit-modal, #create-quilt-modal, #about-modal, #faq-modal {
   overflow: auto;
   display: none;
 }
 
+/*align all form elements to center*/
  form {
   text-align: center;
 }
 
-
+/*this is the background, the grey out area of the modal*/
 .modal {
   background-color: rgba(0,0,0,0.4);
+  /*cover the entire page*/
   position: fixed;
   height: 100%;
   max-height: 100%;
@@ -18,15 +21,18 @@
   z-index: 1;
   top: 0;
   bottom: 0;
+  /*let it scroll*/
   overflow: auto;
 }
 
+/*this is the close x buttons on the modals*/
 .close {
   color: grey;
   font-size: 180%;
   padding-top: 3%;
 }
 
+/*this is the box holding the text*/
 .modal-text {
   background-color: white;
   height: 500px;
@@ -35,9 +41,11 @@
   margin: 20px auto;
   box-shadow: 0 3px 3px grey;
   padding: 3px;
+  /*let it scroll*/
   overflow: auto;
 }
 
+/*this is more specifically the box holding the body text in the modal-text*/
 .text {
   padding: 4px;
 }

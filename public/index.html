@@ -65,14 +65,14 @@
   </div>
   <div class="index-quilts">
     <div class="indexed" ng-repeat="quilt_block in ctrl.quilt_blocks" ng-click="ctrl.getQuilt(quilt_block.id);" >
-      <ul>
+
         <!-- title -->
-        <li><h3 id="quilt-title" >{{quilt_block.title}}</h3></li>
+        <h3 id="quilt-title" >{{quilt_block.title}}</h3>
         <!-- creator (user_id) -->
         <!-- difficulty -->
-        <li><p>{{quilt_block.difficulty}}</p></li>
+        <p>{{quilt_block.difficulty}}</p>
         <!-- img -->
-      </ul>
+
     </div>
   </div>
 </div>
@@ -115,29 +115,28 @@
         <!-- math for quilt -->
         <!-- square piece size -->
         <li><p><label>Square Piece Size with Seams:</label><br/> {{ctrl.squareWithSeams}} inches</p></li>
-        <!-- square yardage  -->
-        <li><p><label>Amount of Fabric for Squares:</label><br/> {{ctrl.squareYardage}} yards</p></li>
         <!-- triangle piece size -->
         <li><p><label>Triangled Square Size with Seams:</label><br/> {{ctrl.triangleWithSeams}} inches</p></li>
-        <!-- triangle yardage  -->
-        <li><p><label>Amount of Fabric for Triangled Squares:</label><br/> {{ctrl.triangleYardage}} yards</p></li>
         <!-- total yardage for quilt block  -->
         <li><p><label>Total Yardage Needed for Block:</label><br/> {{ctrl.quiltBlockYardage}} yards</p></li>
+        <!-- baby blanket 36*60  yardage -->
+        <li><p><label>Total Yardage Needed for Baby Blanket:</label><br/>
+        {{ctrl.babyYardage}} yards</p></li>
+        <!-- twin blanket 70*90 yardage   -->
+        <li><p><label>Total Yardage Needed for Twin Blanket:</label><br/> {{ctrl.twinYardage}} yards</p></li>
+        <!-- full blanket 84*90 yardage  -->
+        <li><p><label>Total Yardage Needed for Full Blanket:</label><br/> {{ctrl.fullYardage}} yards</p></li>
+        <!-- queen blanket 90*95 yardage  -->
+        <li><p><label>Total Yardage Needed for Queen Blanket:</label><br/> {{ctrl.queenYardage}} yards</p></li>
+        <!-- king blanket 108*95 yardage  -->
+        <li><p><label>Total Yardage Needed for King Blanket:</label><br/> {{ctrl.kingYardage}} yards</p></li>
       </ul>
       <!-- calculate yardage for quilt top  -->
-      <select ng-model="ctrl.quilt_size">
-        <option value="4"> Baby </option>
-        <option value="9"> Twin </option>
-        <option value="16"> Full </option>
-        <option value="25"> Queen </option>
-        <option value="36"> King </option>
-      </select>
-    </div>
     <!-- calculate binding yardage  -->
-
     <!-- save button for quilt yardage which is an edit route -->
     <!-- delete button for quilt -->
   </div>
+</div>
 </section>
 </section>
 <!--===========END SHOW QUILT==========-->
@@ -278,7 +277,7 @@
     <h2> About </h2>
     <!-- what is this app -->
     <div class="text">
-      <p> This app was created by Emily Cali for her final project during the General Assembly Web Development Immersive Remote program in the spring of 2017. With the high intensity of this course Miss Cali did not have much time to practice one of her favorite hobbies, quilting, and came up with the idea for this site because she was missing making blankets. In addition to this, math is not Miss Cali's strongest suite, and she found that she would often have trouble accurately determining the ammount of fabric she would need for a quilt. She wanted to create an app that would help her discover the total yardage of fabric necessary for a project. </p>
+      <p> This app was created by Emily Cali for her final project during the General Assembly Web Development Immersive Remote program in the spring of 2017. Miss Cali enjoys quilting in her free time but would often have some trouble with the math of her patterns. She wanted to create an app that would help her discover the total yardage of fabric necessary for a project. </p>
       <br/>
       <p> Miss Cali hopes to continue work on this site and build out features such as color variations, quilt visualization and even the ability to use more than one size for pieces. </p>
       <br/>

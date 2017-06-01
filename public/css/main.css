@@ -1,15 +1,20 @@
+/*set the background image to the semi transparent quilt blocks from the assets folder*/
 body {
   background-image: url("../assets/backgroundgrey.png");
+  /*set it to fill the window*/
   background-size: cover;
+  /*set it to repeat to fill the window height*/
   background-repeat: repeat-y;
   margin: 0 auto;
   padding: 0 auto;
 }
 
+/*this holds the nav and the logo*/
 header {
   position: static;
   top: 0;
   background-color: white;
+  /*sets things to be responsive*/
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -19,42 +24,37 @@ header {
 nav {
   letter-spacing: 0.3px;
   width: 60%;
+  /*sets responsivity*/
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
+/*these are specifically the links and we are letting them sit together*/
 nav a {
   display: inline-block;
   text-decoration: none;
   color: grey;
 }
 
+/*on hover*/
 nav a:hover {
   color: black;
   text-decoration: none;
 }
 
+/*this is the splash page, we start here*/
 main {
   overflow: hidden;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  /*background-size: cover;
-  background-repeat: repeat x;*/
   align-items: center;
   min-height: 80vh;
 }
 
-/*.banner-img {
-  width: 15%;
-  padding-left: 10px;
-  position: center;
-  opacity: 0.2;
-}*/
-
+/*this is the text box holding our message and the button */
 .banner-text {
-  /*z-index: 1;*/
   height: 100%;
   width: 100%;
   display: flex;
@@ -65,44 +65,51 @@ main {
   position: center;
   text-align: center;
   padding-top: 20%;
-  /*padding-left: 30%;*/
   margin: 0 auto;
-  /*padding: 2%;*/
 }
 
+/*this is the inner part of the text box on the main area splash page*/
 .inner-banner {
   background-color: white;
   width: 30%;
   height: 40%;
   overflow: auto;
   padding: 3%;
-  /*position: relative;*/
   border-radius: 5px;
   margin: 0 auto;
   box-shadow: 0 3px 3px grey;
 }
 
+/*this is the index page that the view swiches to after clicking the button to view blocks*/
 .index-quilts {
-  position: relative;
   display: flex;
-  flex-direction: row wrap;
+  flex-flow: row wrap;
   justify-content: space-around;
+  margin: 0 auto;
+  align-items: center;
+  align-content: center;
+  position: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-
+/*this is the specific div for the repeated quilt block*/
 .indexed {
   background-color: white;
   width: 10%;
   height: 10%;
   border-radius: 5px;
-  margin: auto;
-  /*margin: 20px auto;*/
+  margin: 0 auto;
   box-shadow: 0 3px 3px grey;
-  padding: 3px;
+  padding: 3%;
   display: flex;
   flex-flow: row wrap;
+  overflow: auto;
+  text-align: center;
 }
 
+/*this is the show quilt area */
 #quilt-block-data {
   display: flex;
   flex-direction: row wrap;
@@ -111,15 +118,16 @@ main {
   width: 90%;
   background-color: white;
   border-radius: 5px;
-  /*margin: 20px auto;*/
   box-shadow: 0 3px 3px grey;
   padding: 3px;
 }
 
+/*these are the two columns to the quilt data, one calling the db and the other actually doing math*/
 #quiltattributes, #quiltmath {
   width: 50%;
 }
 
+/*this is the styling for all the form submit buttons and the button on the splash page*/
 .btn {
   color: white;
   background-color: #CBD2D0;

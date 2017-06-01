@@ -21,6 +21,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //toggle to change views from banner to index
   this.homeToIndex = false;
+  //toggle changes the show block to be visible
   this.seeBlock = false;
 
   this.changeView = function() {
@@ -30,7 +31,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //===========CREATE USER============//
 
   this.createAccount = function(user) {
-    console.log(user);
+    //console.log(user);
     $http({
       method: "POST",
       url: this.url + "/users",
@@ -54,7 +55,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //==========LOGIN USER==========//
 
   this.login = function(user) {
-    console.log(user);
+    //console.log(user);
     $http({
       method: "POST",
       url: this.url + "/users/login",
@@ -65,13 +66,14 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         }
       },
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       if (response.data.status == 401) {
+        // this is for if the user doesn't exist or if they have entered the wrong password or username or have left them blank
         this.error = "Please try again";
       } else {
         this.user = response.data.user;
+        //give them a token
         localStorage.setItem("token", JSON.stringify(response.data.token));
-
         //toggle for token validation to make certain parts of the page show and not show with ngs
         this.token = true;
       }
@@ -89,8 +91,8 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //===========USER EDIT===========//
 
   this.editUser = function(user, id) {
-    console.log(user);
-    console.log(id);
+    //console.log(user);
+    //console.log(id);
     $http({
       method: "PUT",
       url: this.url + "/users/" + id,
@@ -105,7 +107,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       if (response.data.status == 401) {
         this.error = "Unauthorized";
       } else {
@@ -126,7 +128,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       if (response.data.status == 401) {
         this.error = "Unauthorized";
       } else {
@@ -140,7 +142,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //==========USER DELETE===========//
 
   this.deleteUser = function(id) {
-    console.log("delete clicked");
+    //console.log("delete clicked");
     $http({
       method: "DELETE",
       url: this.url + "/users/" + id,
@@ -148,7 +150,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
-      console.log(response + "delete");
+      //console.log(response + "delete");
       this.logout();
     }.bind(this));
   };
@@ -157,9 +159,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //NEED TO PASS IN USERID
   this.createQuiltBlock = function(quilt_block, id) {
     //this.user_id = id;
-    console.log(JSON.parse(localStorage.getItem('token')));
-    console.log(quilt_block);
-    console.log(id);
+    //console.log(JSON.parse(localStorage.getItem('token')));
+    //console.log(quilt_block);
+    //console.log(id);
     $http({
       method: "POST",
       url: this.url + "/quilt_blocks",
@@ -171,15 +173,15 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         'Bearer ' + JSON.parse(localStorage.getItem('token'))
       }
     }).then(function(response) {
-      console.log(response + "created quilt block");
-      // if 401 error message please login
-      //if (response.data.status == 401) {
-      //this.error = "Please Login to create a quilt";
-      //} else {
-      //this.quilt_block = response.data.quilt_block;
+      //console.log(response + "created quilt block");
+      //if 401 error message please login
+      if (response.data.status == 401) {
+      this.error = "Please Login to create a quilt";
+      } else {
+      this.quilt_block = response.data.quilt_block;
       this.quiltFormdData = {};
       this.getQuiltBlocks();
-      //}
+      }
     }.bind(this));
   };
 
@@ -194,13 +196,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   this.getQuilt = function(id) {
     //this.quiltBlockId = id;
-    console.log("getting one quilt block");
-    console.log(id);
+    //console.log("getting one quilt block");
+    //console.log(id);
     $http({
       method: "GET",
       url: this.url + "/quilt_blocks/" + id,
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       this.seeBlock = true;
       this.quilt_block = response.data;
       this.quiltBlockCalc(id);
@@ -211,11 +213,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
   //=======QUILT BLOCK MATH========//
 
-  //baby 36 x 60
-  //twin 70 x 90
-  //full/double 84 x 90
-  //queen 90 x 95
-  //king 108 x 95
+
 
   this.quiltBlockCalc = function() {
     //square pieces measurement with seams
@@ -230,7 +228,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     this.squareYardage = this.squareFabricLength / 36;
 
     //triangle pieces with seams
-    this.triangleWithSeams = this.quilt_block.piece_size + 0.75;
+    this.triangleWithSeams = this.quilt_block.piece_size + 0.875;
     //cuts you can make across the width of the fabric assumed at 40 inches wide
     this.triangleCutsFabric = 40 / this.triangleWithSeams;
     //strips you can make based on number of squares and the cuts determined
@@ -241,45 +239,76 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     this.triangleYardage = this.triangleFabricLength / 36;
 
     // total yardage needed for the block
-    this.quiltBlockYardage = this.squareYardage + this.triangleYardage;
+    this.quiltBlockYardageBeforeRounding = this.squareYardage + this.triangleYardage;
+
+    // solution found in combination with https://stackoverflow.com/questions/1553704/round-to-nearest-25-javascript and testing division by four and rounding
+    this.quiltBlockYardage = (Math.round(this.quiltBlockYardageBeforeRounding * 4)/4).toFixed(2);
 
     // calcs for quilt sizes
-    //if quilt size is baby
-    //if quilt size is twin
-    //if quilt size is full
-    //if quilt size is queen
-    //fi quilt size is king
+    this.blockLength = this.quilt_block.piece_size * Math.sqrt(this.quilt_block.num_pieces);
+    //if quilt size is baby 36 x 60
+    this.babyLength = 60 / this.blockLength;
+    this.babyWidth = 36 / this.blockLength;
+    this.babyAreaBlocks = this.babyLength * this.babyWidth;
+    this.babyYardageBeforeRound = this.babyAreaBlocks * this.quiltBlockYardageBeforeRounding;
+    this.babyYardage = (Math.round(this.babyYardageBeforeRound * 4)/4).toFixed(2);
 
-    //}.bind(this));
+    //if quilt size is twin 70 x 90
+    this.twinLength = 90 / this.blockLength;
+    this.twinWidth = 70 / this.blockLength;
+    this.twinAreaBlocks = this.twinLength * this.twinWidth;
+    this.twinYardageBeforeRound = this.twinAreaBlocks * this.quiltBlockYardageBeforeRounding;
+    this.twinYardage = (Math.round(this.twinYardageBeforeRound * 4)/4).toFixed(2);
+
+    //if quilt size is full 84 x 90
+    this.fullLength = 90 / this.blockLength;
+    this.fullWidth = 84 / this.blockLength;
+    this.fullAreaBlocks = this.fullLength * this.fullWidth;
+    this.fullYardageBeforeRound = this.fullAreaBlocks * this.quiltBlockYardageBeforeRounding;
+    this.fullYardage = (Math.round(this.fullYardageBeforeRound * 4)/4).toFixed(2);
+
+    //if quilt size is queen 90 x 95
+    this.queenLength = 95 / this.blockLength;
+    this.queenWidth = 90 / this.blockLength;
+    this.queenAreaBlocks = this.queenLength * this.queenWidth;
+    this.queenYardageBeforeRound = this.queenAreaBlocks * this.quiltBlockYardageBeforeRounding;
+    this.queenYardage = (Math.round(this.queenYardageBeforeRound * 4)/4).toFixed(2);
+
+    //fi quilt size is king 108 x 95
+    this.kingLength = 108 / this.blockLength;
+    this.kingWidth = 95 / this.blockLength;
+    this.kingAreaBlocks = this.kingLength * this.kingWidth;
+    this.kingYardageBeforeRound = this.kingAreaBlocks * this.quiltBlockYardageBeforeRounding;
+    this.kingYardage = (Math.round(this.kingYardageBeforeRound * 4)/4).toFixed(2);
   };
 
   //====SAVE QUILT BLOCK YARDAGE=====//
 
-  this.saveQuiltBlockYardage = function(quiltBlockYardage, id) {
-    quiltBlockYardage = this.quiltBlockYardage;
-    console.log(quiltBlockYardage);
-    console.log(id);
-    $http({
-      method: "PUT",
-      url: this.url + "/quilt_blocks" + id,
-      data: {
-        quiltBlockYardage : this.quilt_block.yardage
-      },
-      headers: {
-        Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-      }
-    }).then(function(response) {
-      console.log(response);
-      if (response.data.status == 401) {
-        this.error = "You need to login or you do not own this quilt block";
-      } else {
-        this.getQuiltBlock(response.data._id);
-        this.quilt_block = response.data;
-        //this.quilt_block = response.data.quilt_block;
-        this.getQuiltBlocks();
-      }
-    }.bind(this));
-  };
+  // this.saveQuiltBlockYardage = function(quiltBlockYardage, id) {
+  //   quiltBlockYardage = this.quiltBlockYardage;
+  //   console.log(quiltBlockYardage);
+  //   console.log(id);
+  //   $http({
+  //     method: "PUT",
+  //     url: this.url + "/quilt_blocks" + id,
+  //     data: {
+  //       quiltBlockYardage : this.quilt_block.yardage
+  //     },
+  //     headers: {
+  //       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+  //     }
+  //   }).then(function(response) {
+  //     console.log(response);
+  //     if (response.data.status == 401) {
+  //       this.error = "You need to login or you do not own this quilt block";
+  //     } else {
+  //       this.getQuiltBlock(response.data._id);
+  //       this.quilt_block = response.data;
+  //       //this.quilt_block = response.data.quilt_block;
+  //       this.getQuiltBlocks();
+  //     }
+  //   }.bind(this));
+  // };
 
   //=========QUILT BLOCK INDEX=========//
 
@@ -290,7 +319,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }).then(function(response) {
       console.log(response);
       this.quilt_blocks = response.data;
-      //console.log(this.recipes);
     }.bind(this));
   };
 
