@@ -14,6 +14,8 @@
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
   <link rel="stylesheet" type="text/css" href="/css/modals.css" />
   <link rel="stylesheet" type="text/css" href="/css/text.css" />
+  <!-- typefaces -->
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 </head>
 <body ng-controller="mainController as ctrl">
 
@@ -27,7 +29,7 @@
 
 <!--===============HEADER===============-->
 <header>
-  <h2 class="logo">Quilt Creator</h2>
+  <h2 id="logo">Quilt Creator</h2>
   <nav id="nav">
     <a id="about" href="#">ABOUT</a>
     <a id="faq" href="#">FAQ</a>
@@ -43,8 +45,36 @@
 <!--=================MAIN============-->
 <div ng-show="!ctrl.homeToIndex">
   <section id="main">
-    <h1> Calculate the yards you'll need for your quilting projects, see what other people are working on </h1>
-    <a class="index" ng-click="ctrl.changeView();" href="#">VIEW BLOCKS</a>
+    <div class="banner-text">
+      <h1> Plan Your Quilt Blocks </h1>
+      <h1> Calculate Block Yardage </h1>
+      <h1> See What Others Are Making </h1>
+      <a class="index" ng-click="ctrl.changeView();" href="#">VIEW BLOCKS</a>
+    </div>
+    <img class="banner-img" src="/assets/block_07.png" />
+    <img class="banner-img" src="/assets/block_11.png" />
+    <img class="banner-img" src="/assets/block_13.png" />
+    <img class="banner-img" src="/assets/block_15.png" />
+    <img class="banner-img" src="/assets/block_17.png" />
+    <img class="banner-img" src="/assets/block_21.png" />
+    <img class="banner-img" src="/assets/block_23.png" />
+    <img class="banner-img" src="/assets/block_24.png" />
+    <img class="banner-img" src="/assets/block_25.png" />
+    <img class="banner-img" src="/assets/block_26.png" />
+    <img class="banner-img" src="/assets/block_27.png" />
+    <img class="banner-img" src="/assets/block_28.png" />
+    <img class="banner-img" src="/assets/block_29.png" />
+    <img class="banner-img" src="/assets/block_30.png" />
+    <img class="banner-img" src="/assets/block_31.png" />
+    <img class="banner-img" src="/assets/block_32.png" />
+    <img class="banner-img" src="/assets/block_33.png" />
+    <img class="banner-img" src="/assets/block_35.png" />
+    <img class="banner-img" src="/assets/block_36.png" />
+    <img class="banner-img" src="/assets/block_37.png" />
+    <img class="banner-img" src="/assets/block_38.png" />
+    <img class="banner-img" src="/assets/block_40.png" />
+    <img class="banner-img" src="/assets/block_41.png" />
+    <img class="banner-img" src="/assets/block_42.png" />
   </section>
 </div>
 <!--=================END MAIN============-->

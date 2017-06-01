@@ -1,0 +1,31 @@
+body {
+  font-family: "Quicksand Dash";
+}
+
+#logo {
+  font-family: "Amatic SC";
+  font-size: 40px;
+  padding-left: 30px;
+  letter-spacing: 10px;
+}
+
+a {
+  font-family: "PWDotted";
+  font-size: 22px;
+}
+
+h1 {
+  font-family: "Quicksand Dash";
+}
+
+
+
+@font-face {
+  font-family: "PWDotted";
+  src: url("../assets/PWDottedFont.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand Dash";
+  src: url("../assets/Quicksand_Dash.otf");
+}
