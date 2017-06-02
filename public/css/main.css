@@ -179,3 +179,9 @@ main {
   box-shadow: 0 2px 2px grey;
   padding: 2%;
 }
+
+.modalbutton {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
