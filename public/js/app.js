@@ -43,7 +43,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
         }
       },
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       if (response.status == 401) {
         this.error = "Please try again, the username may be taken or you have not filled these fields.";
       } else {
@@ -317,7 +317,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       method: "GET",
       url: this.url + "/quilt_blocks",
     }).then(function(response) {
-      console.log(response);
+      //console.log(response);
       this.quilt_blocks = response.data;
     }.bind(this));
   };
