@@ -244,11 +244,13 @@
       <br/>
       <!-- piece_size -->
       <label> Piece Size (without seam allowance) </label>
+      <br/>
       <input type="text" ng-model="ctrl.quiltFormData.piece_size" placeholder="inches"/>
       <br/>
       <!-- num pieces possible 4, 9, 16, 25, 36-->
       <!-- make an example area showing what quilt blocks can look like -->
-      <label> Number of Pieces: </label>
+      <label> Total Number of Square Pieces (triangles and squares): </label>
+      <br/>
       <select ng-model="ctrl.quiltFormData.num_pieces">
         <option value="4"> 4 </option>
         <option value="9"> 9 </option>
@@ -258,16 +260,22 @@
       </select>
       <br/>
       <!-- triangles -->
+      <br/>
+      <label class="clarification"> TWO TRIANGLES IS EQUIVALENT TO ONE TRIANGLED PIECE OR ONE WHOLE SQUARE</label>
+      <br/>
       <label> How many Square Pieces do you have that are made of Half Triangles? </label>
+      <br/>
       <input type="text" ng-model="ctrl.quiltFormData.triangles" placeholder="number of triangled squares"/>
       <br/>
       <!-- squares -->
       <label> How many whole Square Pieces do you have in your quilt block? </label>
+      <br/>
       <input type="text" ng-model="ctrl.quiltFormData.squares" placeholder="number of squares" />
       <br/>
       <!-- submit -->
       <input class="btn" type="submit" value="Make Your Block" />
     </form>
+      <label>{{ctrl.error}}</label>
   </section>
 </section>
 <!--===========END MAKE QUILT==========-->
