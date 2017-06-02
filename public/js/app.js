@@ -179,9 +179,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
     }).then(function(response) {
       //console.log(response + "created quilt block");
       //if 401 error message please login
-      if (response.data.status == 401 ) {
+      if (response.data.status == ":unprocessable_entity") {
       this.error = "Please Login to create a quilt";
-    } else if (quilt_block.triangles + quilt_block.squares !== quilt_block.num_pieces) {
+    } else if (response.data.status == 401) {
       this.error = "Your total number of pieces does not match the number of triangled and whole squares, please check your entries.";
     } else {
       this.quilt_block = response.data.quilt_block;
