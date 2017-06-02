@@ -38,6 +38,10 @@ ul {
   list-style: none;
 }
 
+input {
+  font-family: "PWDotted";
+}
+
 /*these are typefaces in the assets folder*/
 @font-face {
   font-family: "PWDotted";

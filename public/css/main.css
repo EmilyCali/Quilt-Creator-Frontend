@@ -185,3 +185,7 @@ main {
   align-content: center;
   align-items: center;
 }
+
+input {
+  width: 80px;
+}
