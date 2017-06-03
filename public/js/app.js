@@ -12,7 +12,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
   //empty user object to get form data
   this.user = {};
   //form data for quilt blocks
-  this.quiltFormdData = {};
+  this.quiltFormData = {};
   //quilt block empty object
   this.quilt_block = {};
 
@@ -185,7 +185,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       this.error = "Your total number of pieces does not match the number of triangled and whole squares, please check your entries.";
     } else {
       this.quilt_block = response.data.quilt_block;
-      this.quiltFormdData = {};
+      this.quiltFormData = {};
       this.getQuiltBlocks();
       }
     }.bind(this));
