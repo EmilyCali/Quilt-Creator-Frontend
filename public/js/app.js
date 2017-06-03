@@ -108,7 +108,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
       }
     }).then(function(response) {
       //console.log(response);
-      if (response.data.status == 401) {
+      if (response.data.status == 422) {
         this.error = "Unauthorized";
       } else {
         this.getUser(response.data.id);

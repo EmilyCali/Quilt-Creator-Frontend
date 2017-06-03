@@ -160,8 +160,13 @@
       <br/>
       <input type="password" ng-model="user.password" placeholder="password" required />
       <br/>
+      <br/>
       <input class="btn" type="submit" value="Sign Up"/>
     </form>
+    <br/>
+    <br/>
+    <br/>
+    <label class="error">{{ctrl.error}}</label>
   </section>
 </section>
 <!--=========END CREATE ACCOUNT=========-->
@@ -184,9 +189,14 @@
       <label>Password:</label>
       <input type="password" ng-model="user.password" placeholder="password" />
       <br/>
+      <br/>
       <input class="btn" type="submit" value="Login"/>
+      <br/>
+      <br/>
+      <br/>
       <p>Welcome: <br/>{{ctrl.user.username}} </p>
-      <div>{{ctrl.error}}</div>
+      <br/>
+      <label class="error">{{ctrl.error}}</label>
     </form>
   </section>
 </section>
@@ -212,8 +222,10 @@
       <label>Years Quilting:</label>
       <input type="text" ng-model="user.years_quilting" placeholder="{{ctrl.user.years_quilting}}" value="{{ctrl.user.years_quilting}}"/>
       <br/>
+      <br/>
       <input class="btn" type="submit" value="Save Changes"/>
     </form>
+    <br/>
     <div class="modalbutton">
     <button class="btn" ng-click="ctrl.deleteUser(ctrl.user.id);">Delete Account</button>
   </div>
@@ -266,6 +278,7 @@
       <br/>
       <label class="clarification"> TWO TRIANGLES IS EQUIVALENT TO ONE TRIANGLED PIECE OR ONE WHOLE SQUARE</label>
       <br/>
+      <br/>
       <label> How many Square Pieces do you have that are made of Half Triangles? </label>
       <br/>
       <input type="text" ng-model="ctrl.quiltFormData.triangles" placeholder="number of triangled squares"/>
@@ -275,10 +288,14 @@
       <br/>
       <input type="text" ng-model="ctrl.quiltFormData.squares" placeholder="number of squares" />
       <br/>
+      <br/>
       <!-- submit -->
       <input class="btn" type="submit" value="Make Your Block" />
     </form>
-      <label>{{ctrl.error}}</label>
+    <br/>
+    <br/>
+    <br/>
+      <label class="error">{{ctrl.error}}</label>
   </section>
 </section>
 <!--===========END MAKE QUILT==========-->
