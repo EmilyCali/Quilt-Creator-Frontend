@@ -6,8 +6,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope) {
 
 
   //set variables for usage in functions
-  this.url = "https://quilt-creator-api.herokuapp.com" ||
-  "http://localhost:3000";
+  this.url = "http://localhost:3000";
 
   //empty user object to get form data
   this.user = {};
