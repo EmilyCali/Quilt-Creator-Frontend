@@ -1,49 +1,110 @@
-<!--============MAKE QUILTS===============-->
-<div id="make-quilt">
-  <!-- two columns, one with draggables other to hold them -->
-  <div class="squares container">
-    <div class="pieces">
-      <!-- red square -->
-      <div class="red piece"></div>
-      <!-- orange square -->
-      <div class="orange piece"></div>
-      <!-- yellow square -->
-      <div class="yellow piece"></div>
-      <!-- green square -->
-      <div class="green piece"></div>
-      <!-- blue square -->
-      <div class="blue piece"></div>
-      <!-- purple square -->
-      <div class="purple piece"></div>
-      <!-- black square -->
-      <div class="black piece"></div>
-      <!-- white square -->
-      <div class="white piece"></div>
-      <!-- grey square -->
-      <div class="grey piece"></div>
+<!--============MAKE QUILTS=============-->
+<section id="create-quilt-modal" class="modal">
+  <section class="modal-text">
+    <div>
+      <a class="close">X</a>
     </div>
-    <div id="quilt-grid">
-      <!-- grid for quilt block -->
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-      <div class="piece grid"></div>
-    </div>
-  </div>
-</div>
-<!--=============END MAKE QUILT============-->
+    <h2> Create A Quilt Block </h2>
+    <!-- two triangles count as 1 here, because two make up one block -->
+    <form ng-submit="ctrl.createQuiltBlock(ctrl.quiltFormData, ctrl.user.id);">
+      <!-- title -->
+      <label> Title your Quilt Block </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.title" placeholder="title" />
+      <br/>
+      <!-- difficulty -->
+      <label> How Difficult is Your Quilt Block? </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.difficulty" placeholder="easy, medium, hard, extreme"/>
+      <br/>
+      <!-- style -->
+      <label> Style of Your Quilt </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.style" placeholder="modern, traditional, crazy cool"/>
+      <br/>
+      <!-- piece_size -->
+      <label> Piece Size (without seam allowance) </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.piece_size" placeholder="inches"/>
+      <br/>
+      <!-- num pieces possible 4, 9, 16, 25, 36-->
+      <!-- make an example area showing what quilt blocks can look like -->
+      <label> Total Number of Pieces (triangles and squares): </label>
+      <br/>
+      <select ng-model="ctrl.quiltFormData.num_pieces">
+        <option value="4"> 4 </option>
+        <option value="9"> 9 </option>
+        <option value="16"> 16 </option>
+        <option value="25"> 25 </option>
+        <option value="36"> 36 </option>
+      </select>
+      <br/>
+      <!-- triangles -->
+      <br/>
+      <label class="clarification"> TWO TRIANGLES IS EQUIVALENT TO ONE TRIANGLED PIECE OR ONE WHOLE SQUARE</label>
+      <br/>
+      <br/>
+      <label> How many Square Pieces do you have that are made of Half Triangles? </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.triangles" placeholder="number of triangled squares"/>
+      <br/>
+      <!-- squares -->
+      <label> How many whole Square Pieces do you have in your quilt block? </label>
+      <br/>
+      <input type="text" ng-model="ctrl.quiltFormData.squares" placeholder="number of squares" />
+      <br/>
+      <br/>
+      <!--================ DRAG AND DROP ============================ -->
+      <div id="make-quilt">
+        <!-- two columns, one with draggables other to hold them -->
+        <div class="squares container">
+          <div class="pieces">
+            <!-- white square -->
+            <div class="white piece"></div>
+            <!-- black square -->
+            <div class="black piece"></div>
+            <!-- top left square -->
+            <div class="tl piece"></div>
+            <!-- top right square -->
+            <div class="tr piece"></div>
+            <!-- lower left square -->
+            <div class="ll piece"></div>
+            <!-- lower right square -->
+            <div class="lr piece"></div>
+          </div>
+          <div id="quilt-grid">
+            <!-- grid for quilt block -->
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+            <div class="piece grid"></div>
+          </div>
+        </div>
+      </div>
+      <!--=============END MAKE QUILT============-->
+      <!-- submit -->
+      <input class="btn" type="submit" value="Make Your Block" />
+    </form>
+    <br/>
+    <br/>
+    <br/>
+      <label class="error">{{ctrl.error}}</label>
+  </section>
+</section>
+<!--===========END MAKE QUILT==========-->
+
 
 <!--============SHOW QUILTS===============-->
 <div id="show-quilt">
