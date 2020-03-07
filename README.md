@@ -6,7 +6,7 @@ If you would like to learn more about the backend please go <a href="https://git
 
 You can also visit the live backend but it won't show you much <a href="https://quilt-creator-api.herokuapp.com">here</a>.
 
-You can visit the live app <a href="https://quilt-creator-app.herokuapp.com">here</a>.
+You can visit the live app <a href="https://quilt-creator-app.herokuapp.com">here</a>, however, this page may be down due to outdated resources.
 
 
 <h2> The Idea </h2>
